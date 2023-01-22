@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -12,6 +14,7 @@ import dao.ClassDao;
 import dao.GradeCheckDao;
 import dto.LectureVO;
 import util.MyBatisCommonFactory;
+import view_pro.ClassAdd;
 import view_pro.ClassPro;
 import view_pro.MainFormPro;
 
@@ -22,7 +25,10 @@ public class ClassProLogic implements ActionListener {
   String[] proarr = null;
   GradeCheckDao gcd = null;
   ClassDao cd = null;
+
   String professor = null;
+  String lecture = null;
+  String lectime = null;
 
   public ClassProLogic() {
 
@@ -37,6 +43,7 @@ public class ClassProLogic implements ActionListener {
     List<String> prolist = gcd.getProList();
     proarr = new String[prolist.size()];
 
+    // list로 가져온 결과를 배열로 초기화
     for (int i = 0; i < proarr.length; i++) {
       proarr[i] = prolist.get(i);
     }
@@ -66,6 +73,7 @@ public class ClassProLogic implements ActionListener {
       classpro.dtm_grade.removeRow(0);
     }
 
+    // 가져온 데이터를 vector에 담아 한줄씩 넣어준다
     for (int i = 0; i < gradelist.size(); i++) {
       Vector<String> result = new Vector<>();
       LectureVO gpvo = new LectureVO();
@@ -77,21 +85,43 @@ public class ClassProLogic implements ActionListener {
     }
   }
 
+  // 선택한 강의 삭제
+  public void lecturedel() {
+    cd = new ClassDao();
+    int row = classpro.jtb_grade.getSelectedRow();
+    lecture = (String) classpro.dtm_grade.getValueAt(row, 0);
+    professor = (String) classpro.dtm_grade.getValueAt(row, 1);
+    lectime = (String) classpro.dtm_grade.getValueAt(row, 2);
+    LectureVO gpvo = new LectureVO(lecture, professor, lectime);
+    int result = cd.getdellecture(gpvo);
+    if (result == 1) {
+      JOptionPane.showMessageDialog(classpro, "강의 삭제 완료", "Success", 1);
+      classpro.dtm_grade.removeRow(row);
+    }
+
+  }
+
   @Override
   public void actionPerformed(ActionEvent e) {
     Object obj = e.getSource();
 
     if (obj == classpro.jbtn_search) {
+      // 검색 로직
       professor = classpro.prolist[classpro.jcb_professor.getSelectedIndex()];
       getProfessor(professor);
     } else if (obj == classpro.jbtn_lectureadd) {
+      // 강의 추가
+      ClassAdd cal = new ClassAdd();
+      cal.initDisplay();
 
     } else if (obj == classpro.jbtn_cancel) {
+      // 강의 취소(이전페이지로 이동)
       MainFormPro main = new MainFormPro();
       main.initDisplay();
       classpro.dispose();
-    } else if (obj == classpro.jbtn_lectureadd) {
-
+    } else if (obj == classpro.jbtn_lecturedel) {
+      // 강의 삭제
+      lecturedel();
     }
 
   }

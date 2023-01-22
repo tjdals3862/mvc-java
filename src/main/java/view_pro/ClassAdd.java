@@ -1,5 +1,6 @@
 package view_pro;
 
+// 강의 추가
 import java.awt.Font;
 
 import javax.swing.JButton;

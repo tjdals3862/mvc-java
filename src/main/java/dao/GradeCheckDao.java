@@ -14,6 +14,7 @@ import util.MyBatisCommonFactory;
 public class GradeCheckDao {
   MyBatisCommonFactory mcf = new MyBatisCommonFactory();
 
+  // 강의 조회(전체 강의)
   public List<String> getLectureList() {
     SqlSessionFactory sqlSessionFactory = null;
     SqlSession sqlSession = null;
@@ -29,6 +30,7 @@ public class GradeCheckDao {
     return lecList;
   }
 
+  // 교수 조회
   public List<String> getProList() {
     SqlSessionFactory sqlSessionFactory = null;
     SqlSession sqlSession = null;
@@ -44,6 +46,7 @@ public class GradeCheckDao {
     return proList;
   }
 
+  // 강의 성적 조회(교수)
   public List<GradeProVO> getgradeproList(String lecture) {
     SqlSessionFactory sqlSessionFactory = null;
     SqlSession sqlSession = null;

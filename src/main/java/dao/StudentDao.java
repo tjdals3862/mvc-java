@@ -11,6 +11,7 @@ import util.MyBatisCommonFactory;
 public class StudentDao {
   MyBatisCommonFactory mcf = new MyBatisCommonFactory();
 
+  // 학생 조회(강의에 해당하는 학생 조회)
   public List<String> getstudentList(String lecture) {
     SqlSessionFactory sqlSessionFactory = null;
     SqlSession sqlSession = null;
@@ -25,6 +26,7 @@ public class StudentDao {
     return studentlist;
   }
 
+  // 성적 수정
   // 성공시 1을 return 함
   public int getgrade(GradeVO gVO) {
     SqlSessionFactory sqlSessionFactory = null;

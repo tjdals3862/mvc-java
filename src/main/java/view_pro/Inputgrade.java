@@ -1,5 +1,6 @@
 package view_pro;
 
+// 성적입력
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;

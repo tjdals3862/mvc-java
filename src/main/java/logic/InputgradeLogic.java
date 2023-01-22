@@ -48,7 +48,7 @@ public class InputgradeLogic implements ActionListener, ItemListener {
 
     if (obj == input.jcb_lecture) {
       if (ie.getStateChange() == ItemEvent.SELECTED) {
-
+        // 첫번째 combobox를 선택시 두번째 데이터를 가져온다
         lecture = input.lecture[input.jcb_lecture.getSelectedIndex()];
         students = getStudentList(lecture);
         input.jcb_student.removeAllItems();
@@ -65,13 +65,15 @@ public class InputgradeLogic implements ActionListener, ItemListener {
 
     Object obj = e.getSource();
     if (obj == input.jbtn_input) {
-
+      // 성적 입력
       try {
+        // combobox에서 선택한 값으로 dto에 넣는다
         lecture = input.lecture[input.jcb_lecture.getSelectedIndex()];
         student = students[input.jcb_student.getSelectedIndex()];
         grade = Integer.parseInt(input.jtf_grade.getText());
         gVO = new GradeVO(lecture, student, grade);
         result = sd.getgrade(gVO);
+        // 결과값이 1일때 성공
         if (result == 1) {
           input.jtf_grade.setText("");
           JOptionPane.showMessageDialog(input, "성적 반영 완료되었습니다.", "Success", 1);

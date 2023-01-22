@@ -1,5 +1,7 @@
 package view_st;
 
+// 성적확인
+
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -15,9 +17,9 @@ public class GradeCheck extends JFrame {
   JLabel jlb_title = null;
   JLabel jlb_semititle = null;
   JComboBox jcb_lecture = null;
-  JButton jbtn_search = null;
-  JButton jbtn_add = null;
-  JButton jbtn_cancle = null;
+  public JButton jbtn_search = null;
+  public JButton jbtn_add = null;
+  public JButton jbtn_cancle = null;
   Font f = null;
 
   String totals[] = { "전체" };

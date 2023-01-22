@@ -13,4 +13,8 @@
         insert into lecture values (#{lecture}, #{professor}, #{lectime})            
     </insert>
 
+    <delete id="getdellecture" parameterType="dto.LectureVO">
+        delete from lecture where lecture = #{lecture}
+    </delete>
+
 </mapper>

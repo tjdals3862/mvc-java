@@ -1,5 +1,6 @@
 package view_pro;
 
+// 성적확인
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -78,7 +79,7 @@ public class GradeCheckPro extends JFrame {
     jbtn_add.setBounds(500, 130, 100, 30);
     jbtn_cancle.setBounds(500, 200, 100, 30);
 
-    this.setTitle("학사관리 프로그램");
+    this.setTitle("성적확인/교수");
     this.setLocation(500, 100);
     this.setSize(630, 400);
     this.setVisible(true);

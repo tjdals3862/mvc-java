@@ -4,11 +4,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import logic.MainFormStudentLogic;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 
 public class MainFormStudent extends JFrame {
+
+    MainFormStudentLogic mfsl = null;
 
     JLabel jlb_title = null;
     JLabel jlb_id = null;
@@ -16,9 +21,9 @@ public class MainFormStudent extends JFrame {
     JLabel jlb_id2 = null;
     JLabel jlb_pw2 = null;
 
-    JButton jbtn_logout = null;
-    JButton jbtn_grade = null;
-    JButton jbtn_leture = null;
+    public JButton jbtn_logout = null;
+    public JButton jbtn_grade = null;
+    public JButton jbtn_leture = null;
 
     String id = null;
     String pw = null;
@@ -54,6 +59,11 @@ public class MainFormStudent extends JFrame {
         this.add(jbtn_grade);
         this.add(jbtn_leture);
 
+        mfsl = new MainFormStudentLogic(this);
+        jbtn_logout.addActionListener(mfsl);
+        jbtn_grade.addActionListener(mfsl);
+        jbtn_leture.addActionListener(mfsl);
+
         jlb_title.setBounds(100, 25, 250, 35);
         jlb_id.setBounds(45, 105, 200, 35);
         jlb_pw.setBounds(45, 135, 200, 35);
@@ -72,7 +82,5 @@ public class MainFormStudent extends JFrame {
     public static void main(String[] args) {
         MainFormStudent mainFormStudent = new MainFormStudent();
         mainFormStudent.initDisplay();
-
     }
-
 }
