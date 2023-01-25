@@ -1,5 +1,8 @@
 package view_st;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,13 +16,13 @@ import javax.swing.table.JTableHeader;
 import logic.ClassAddStudentLogic;
 import logic.ClassStudentLogic;
 
-public class ClassAddStudent extends JFrame {
+public class ClassAddStudent extends JFrame implements ActionListener {
   JLabel jlb_title = null;
   JLabel jlb_semititle = null;
-  public JButton jbtn_search = null;
-  public JButton jbtn_lectureadd = null;
-  public JButton jbtn_cancel = null;
-  public JComboBox jcb_professor = null;
+  JButton jbtn_search = null;
+  JButton jbtn_lectureadd = null;
+  JButton jbtn_cancel = null;
+  JComboBox jcb_professor = null;
   Font f = null;
 
   String totals[] = { "전체" };
@@ -66,9 +69,9 @@ public class ClassAddStudent extends JFrame {
     this.add(jbtn_cancel);
     this.add(jcb_professor);
 
-    jbtn_search.addActionListener(casl);
-    jbtn_lectureadd.addActionListener(casl);
-    jbtn_cancel.addActionListener(casl);
+    jbtn_search.addActionListener(this);
+    jbtn_lectureadd.addActionListener(this);
+    jbtn_cancel.addActionListener(this);
 
     jcb_professor.setBounds(245, 60, 240, 30);
     jsp_grade.setBounds(0, 100, 490, 350);
@@ -88,5 +91,22 @@ public class ClassAddStudent extends JFrame {
   public static void main(String[] args) {
     ClassAddStudent cas = new ClassAddStudent();
     cas.initDisplay();
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    Object obj = e.getSource();
+    if (obj == jbtn_search) {
+      // 검색기능 로직
+      // 교수선택후 검색시 해당 교수의 과목이 나오도록 설정
+
+    } else if (obj == jbtn_lectureadd) {
+      // 수강신청
+      // 선택한 과목을 추가
+      // 이미 추가한 과목일시 error message
+
+    } else if (obj == jbtn_cancel) {
+      // 취소버튼 => 이전 페이지로 이동
+    }
   }
 }

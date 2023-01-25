@@ -1,7 +1,8 @@
 package view_st;
 
 // 성적확인
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -13,7 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-public class GradeCheck extends JFrame {
+public class GradeCheck extends JFrame implements ActionListener {
   JLabel jlb_title = null;
   JLabel jlb_semititle = null;
   JComboBox jcb_lecture = null;
@@ -79,5 +80,18 @@ public class GradeCheck extends JFrame {
   public static void main(String[] args) {
     GradeCheck gc = new GradeCheck();
     gc.initDisplay();
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    Object obj = e.getSource();
+
+    if (obj == jbtn_search) {
+      // 검색 로직
+      // 과목에 대한 성적을 출력하며
+      // 전체 과목일시 해당 학생의 전체 성적 출력하도록 설정
+    } else if (obj == jbtn_cancle) {
+
+    }
   }
 }

@@ -1,7 +1,5 @@
 package logic;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
 
@@ -11,7 +9,7 @@ import view_pro.GradeCheckPro;
 import view_pro.Inputgrade;
 import view_pro.MainFormPro;
 
-public class GradeCheckProLogic implements ActionListener {
+public class GradeCheckProLogic {
 
   String[] gradearr = null;
   String[] leclist = null;
@@ -62,21 +60,16 @@ public class GradeCheckProLogic implements ActionListener {
     }
   }
 
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    Object obj = e.getSource();
-
-    if (obj == gcp.jbtn_search) {
-      // 검색 logic 작성
-      lecture = gcp.lecture[gcp.jcb_lecture.getSelectedIndex()];
-      getLecture(lecture);
-    } else if (obj == gcp.jbtn_add) {
-      input = new Inputgrade();
-      input.initDisplay();
-    } else if (obj == gcp.jbtn_cancle) {
-      main = new MainFormPro();
-      main.initDisplay();
-      gcp.dispose();
-    }
+  // 성적 입력 버튼
+  public void add() {
+    input = new Inputgrade();
+    input.initDisplay();
   }
+
+  // 취소 버튼
+  public void cancel() {
+    main = new MainFormPro();
+    main.initDisplay();
+  }
+
 }

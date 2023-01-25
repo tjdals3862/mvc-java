@@ -1,7 +1,5 @@
 package logic;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
 
@@ -18,7 +16,7 @@ import view_pro.ClassAdd;
 import view_pro.ClassPro;
 import view_pro.MainFormPro;
 
-public class ClassProLogic implements ActionListener {
+public class ClassProLogic {
 
   MyBatisCommonFactory mcf = new MyBatisCommonFactory();
   ClassPro classpro = null;
@@ -26,9 +24,9 @@ public class ClassProLogic implements ActionListener {
   GradeCheckDao gcd = null;
   ClassDao cd = null;
 
-  String professor = null;
-  String lecture = null;
-  String lectime = null;
+  private String professor = null;
+  private String lecture = null;
+  private String lectime = null;
 
   public ClassProLogic() {
 
@@ -101,29 +99,15 @@ public class ClassProLogic implements ActionListener {
 
   }
 
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    Object obj = e.getSource();
+  public void lectureadd() {
+    ClassAdd cal = new ClassAdd();
+    cal.initDisplay();
+  }
 
-    if (obj == classpro.jbtn_search) {
-      // 검색 로직
-      professor = classpro.prolist[classpro.jcb_professor.getSelectedIndex()];
-      getProfessor(professor);
-    } else if (obj == classpro.jbtn_lectureadd) {
-      // 강의 추가
-      ClassAdd cal = new ClassAdd();
-      cal.initDisplay();
-
-    } else if (obj == classpro.jbtn_cancel) {
-      // 강의 취소(이전페이지로 이동)
-      MainFormPro main = new MainFormPro();
-      main.initDisplay();
-      classpro.dispose();
-    } else if (obj == classpro.jbtn_lecturedel) {
-      // 강의 삭제
-      lecturedel();
-    }
-
+  public void cancel() {
+    MainFormPro main = new MainFormPro();
+    main.initDisplay();
+    classpro.dispose();
   }
 
 }

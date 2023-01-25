@@ -1,5 +1,8 @@
 package view_pro;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -8,16 +11,16 @@ import logic.MainFormProLogic;
 
 import java.awt.Font;
 
-public class MainFormPro extends JFrame {
+public class MainFormPro extends JFrame implements ActionListener {
   JLabel jlb_title = null;
   JLabel jlb_id = null;
   JLabel jlb_pw = null;
   JLabel jlb_id2 = null;
   JLabel jlb_pw2 = null;
 
-  public JButton jbtn_logout = null;
-  public JButton jbtn_grade = null;
-  public JButton jbtn_leture = null;
+  JButton jbtn_logout = null;
+  JButton jbtn_grade = null;
+  JButton jbtn_leture = null;
 
   String id = null;
   String pw = null;
@@ -55,9 +58,9 @@ public class MainFormPro extends JFrame {
     this.add(jbtn_leture);
 
     mfpl = new MainFormProLogic(this);
-    jbtn_logout.addActionListener(mfpl);
-    jbtn_grade.addActionListener(mfpl);
-    jbtn_leture.addActionListener(mfpl);
+    jbtn_logout.addActionListener(this);
+    jbtn_grade.addActionListener(this);
+    jbtn_leture.addActionListener(this);
 
     jlb_title.setBounds(100, 25, 250, 35);
     jlb_id.setBounds(45, 105, 200, 35);
@@ -78,5 +81,17 @@ public class MainFormPro extends JFrame {
     MainFormPro mainFormPro = new MainFormPro();
     mainFormPro.initDisplay();
 
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    Object obj = e.getSource();
+    if (obj == jbtn_logout) {
+      mfpl.logout();
+    } else if (obj == jbtn_grade) {
+      mfpl.grade();
+    } else if (obj == jbtn_leture) {
+      mfpl.lecture();
+    }
   }
 }

@@ -1,14 +1,11 @@
 package logic;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import view.LoginForm;
 import view_pro.ClassPro;
 import view_pro.GradeCheckPro;
 import view_pro.MainFormPro;
 
-public class MainFormProLogic implements ActionListener {
+public class MainFormProLogic {
 
   MainFormPro mainFormPro = null;
   LoginForm lf = null;
@@ -19,23 +16,24 @@ public class MainFormProLogic implements ActionListener {
     this.mainFormPro = mainFormPro;
   }
 
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    Object obj = e.getSource();
-    if (obj == mainFormPro.jbtn_logout) {
-      lf = new LoginForm();
-      lf.initDisplay();
-      mainFormPro.dispose();
-    } else if (obj == mainFormPro.jbtn_grade) {
-      gcp = new GradeCheckPro();
-      gcp.initDisplay();
-      mainFormPro.dispose();
-    } else if (obj == mainFormPro.jbtn_leture) {
-      cp = new ClassPro();
-      cp.initDisplay();
-      mainFormPro.dispose();
-    }
-
+  // 로그아웃
+  public void logout() {
+    lf = new LoginForm();
+    lf.initDisplay();
+    mainFormPro.dispose();
   }
 
+  // 성적관리
+  public void grade() {
+    gcp = new GradeCheckPro();
+    gcp.initDisplay();
+    mainFormPro.dispose();
+  }
+
+  // 수업관리
+  public void lecture() {
+    cp = new ClassPro();
+    cp.initDisplay();
+    mainFormPro.dispose();
+  }
 }

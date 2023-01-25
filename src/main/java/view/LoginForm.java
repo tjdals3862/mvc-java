@@ -11,21 +11,24 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import logic.LoginEvent;
+import logic.LoginLogic;
+import view_pro.MainFormPro;
 
-public class LoginForm extends JFrame {
+public class LoginForm extends JFrame implements ActionListener {
   // 선언부
   JLabel jlb_id, jlb_pw, jlb_find = null;
   JTextField jtf_id = null;
   JPasswordField jpf_pw = null;
-  public JButton jbtn_join = null;
-  public JButton jbtn_login = null;;
+  JButton jbtn_join = null;
+  JButton jbtn_login = null;;
   JComboBox pro_or_stu = null;
-  LoginEvent loginEvent = null;
+  LoginLogic loginEvent = null;
+  MainFormPro mpf = null;
+  RegisterForm rf = null;
 
   // 생성자
   public LoginForm() {
-    loginEvent = new LoginEvent(this);
+    loginEvent = new LoginLogic(this);
   }
 
   // 화면그리기
@@ -82,8 +85,8 @@ public class LoginForm extends JFrame {
     jlb_find.setForeground(Color.gray);
 
     // btn for action
-    jbtn_join.addActionListener(loginEvent);
-    jbtn_login.addActionListener(loginEvent);
+    jbtn_join.addActionListener(this);
+    jbtn_login.addActionListener(this);
 
   }
 
@@ -92,4 +95,17 @@ public class LoginForm extends JFrame {
     lf.initDisplay();
   }
 
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    Object obj = e.getSource();
+
+    if (obj == jbtn_login) {
+      mpf = new MainFormPro();
+      mpf.initDisplay();
+      this.dispose();
+    } else if (obj == jbtn_join) {
+      rf = new RegisterForm();
+      rf.initDisplay();
+    }
+  }
 }

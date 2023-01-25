@@ -1,5 +1,8 @@
 package view_st;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,7 +14,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 
-public class MainFormStudent extends JFrame {
+public class MainFormStudent extends JFrame implements ActionListener {
 
     MainFormStudentLogic mfsl = null;
 
@@ -60,9 +63,9 @@ public class MainFormStudent extends JFrame {
         this.add(jbtn_leture);
 
         mfsl = new MainFormStudentLogic(this);
-        jbtn_logout.addActionListener(mfsl);
-        jbtn_grade.addActionListener(mfsl);
-        jbtn_leture.addActionListener(mfsl);
+        jbtn_logout.addActionListener(this);
+        jbtn_grade.addActionListener(this);
+        jbtn_leture.addActionListener(this);
 
         jlb_title.setBounds(100, 25, 250, 35);
         jlb_id.setBounds(45, 105, 200, 35);
@@ -82,5 +85,19 @@ public class MainFormStudent extends JFrame {
     public static void main(String[] args) {
         MainFormStudent mainFormStudent = new MainFormStudent();
         mainFormStudent.initDisplay();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        Object obj = new Object();
+        if (obj == jbtn_logout) {
+            // 로그아웃 로직
+        } else if (obj == jbtn_grade) {
+            // 성적확인 로직
+        } else if (obj == jbtn_leture) {
+            // 강의확인 로직
+        }
+
     }
 }

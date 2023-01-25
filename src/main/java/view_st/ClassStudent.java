@@ -2,6 +2,8 @@ package view_st;
 
 import java.awt.Font;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -15,7 +17,7 @@ import logic.ClassProLogic;
 import logic.ClassStudentLogic;
 import view_pro.ClassPro;
 
-public class ClassStudent extends JFrame {
+public class ClassStudent extends JFrame implements ActionListener {
   JLabel jlb_title = null;
   JLabel jlb_semititle = null;
   public JButton jbtn_search = null;
@@ -70,10 +72,10 @@ public class ClassStudent extends JFrame {
     this.add(jbtn_cancel);
     this.add(jcb_professor);
 
-    jbtn_search.addActionListener(gsl);
-    jbtn_lectureadd.addActionListener(gsl);
-    jbtn_lecturedel.addActionListener(gsl);
-    jbtn_cancel.addActionListener(gsl);
+    jbtn_search.addActionListener(this);
+    jbtn_lectureadd.addActionListener(this);
+    jbtn_lecturedel.addActionListener(this);
+    jbtn_cancel.addActionListener(this);
 
     jcb_professor.setBounds(245, 60, 240, 30);
     jsp_grade.setBounds(0, 100, 490, 350);
@@ -94,5 +96,25 @@ public class ClassStudent extends JFrame {
   public static void main(String[] args) {
     ClassStudent cs = new ClassStudent();
     cs.initDisplay();
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    Object obj = e.getSource();
+    if (obj == jbtn_search) {
+      // 새로고침로직
+      // 새로고침시 테이블 초기화
+
+    } else if (obj == jbtn_lectureadd) {
+      // 강의 추가 로직
+
+    } else if (obj == jbtn_lecturedel) {
+      // 수강 취소 로직
+      // 테이블 선택시 선택한 과목 삭제
+
+    } else if (obj == jbtn_cancel) {
+      // 취소 로직
+    }
+
   }
 }

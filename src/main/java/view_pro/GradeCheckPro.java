@@ -3,6 +3,9 @@ package view_pro;
 // 성적확인
 import java.awt.Font;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -14,7 +17,7 @@ import javax.swing.table.JTableHeader;
 
 import logic.GradeCheckProLogic;
 
-public class GradeCheckPro extends JFrame {
+public class GradeCheckPro extends JFrame implements ActionListener {
   JLabel jlb_title = null;
   JLabel jlb_semititle = null;
   public JComboBox jcb_lecture = null;
@@ -67,9 +70,9 @@ public class GradeCheckPro extends JFrame {
     this.add(jbtn_add);
     this.add(jbtn_cancle);
 
-    jbtn_search.addActionListener(gcpl);
-    jbtn_add.addActionListener(gcpl);
-    jbtn_cancle.addActionListener(gcpl);
+    jbtn_search.addActionListener(this);
+    jbtn_add.addActionListener(this);
+    jbtn_cancle.addActionListener(this);
 
     jsp_grade.setBounds(0, 100, 490, 350);
     jlb_title.setBounds(250, 15, 250, 35);
@@ -90,5 +93,21 @@ public class GradeCheckPro extends JFrame {
     GradeCheckPro gcp = new GradeCheckPro();
 
     gcp.initDisplay();
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    Object obj = e.getSource();
+
+    if (obj == jbtn_search) {
+      // 검색 logic 작성
+      String lecture = this.lecture[jcb_lecture.getSelectedIndex()];
+      gcpl.getLecture(lecture);
+    } else if (obj == jbtn_add) {
+      gcpl.add();
+    } else if (obj == jbtn_cancle) {
+      gcpl.cancel();
+      this.dispose();
+    }
   }
 }

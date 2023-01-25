@@ -2,15 +2,18 @@ package view_pro;
 
 // 강의 추가
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import logic.ClassAddLogic;
 
-public class ClassAdd extends JFrame {
+public class ClassAdd extends JFrame implements ActionListener {
   Font f = null;
   JLabel jlb_title = null;
   JLabel jlb_lecture = null;
@@ -53,8 +56,8 @@ public class ClassAdd extends JFrame {
     this.add(jbtn_cancel);
 
     cal = new ClassAddLogic(this);
-    jbtn_add.addActionListener(cal);
-    jbtn_cancel.addActionListener(cal);
+    jbtn_add.addActionListener(this);
+    jbtn_cancel.addActionListener(this);
 
     jlb_title.setBounds(125, 15, 100, 30);
     jlb_lecture.setBounds(50, 70, 100, 30);
@@ -75,6 +78,34 @@ public class ClassAdd extends JFrame {
   public static void main(String[] args) {
     ClassAdd ca = new ClassAdd();
     ca.initDisplay();
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    Object obj = e.getSource();
+
+    // 강의 추가
+    if (obj == jbtn_add) {
+
+      // 선택한 데이터를 가져온다
+      String lecture = jtf_lecture.getText();
+      String professor = jtf_professor.getText();
+      String lectime = jtf_lectime.getText();
+
+      // 성공시 1을 반환하므로 성공시 아래 로직 진행
+      int result = cal.add(lecture, professor, lectime);
+
+      if (result == 1) {
+        jtf_lecture.setText("");
+        jtf_professor.setText("");
+        jtf_lectime.setText("");
+        JOptionPane.showMessageDialog(this, "강의 추가 완료", "Success", 1);
+      }
+    }
+    // 취소
+    else if (obj == jbtn_cancel) {
+      this.dispose();
+    }
   }
 
 }
