@@ -16,6 +16,7 @@
     <mapper resource="config/grade.xml"/>
     <mapper resource="config/student.xml"/>
     <mapper resource="config/class.xml"/>
+    <mapper resource="config/login.xml"/>
 
   </mappers>
 </configuration>

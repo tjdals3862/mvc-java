@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import dto.ProfessorVO;
 import logic.MainFormProLogic;
 
 import java.awt.Font;
@@ -26,9 +27,14 @@ public class MainFormPro extends JFrame implements ActionListener {
   String pw = null;
   Font f = null;
   MainFormProLogic mfpl = null;
+  ProfessorVO pvo = null;
 
   public MainFormPro() {
 
+  }
+
+  public MainFormPro(ProfessorVO pvo) {
+    this.pvo = pvo;
   }
 
   public void initDisplay() {

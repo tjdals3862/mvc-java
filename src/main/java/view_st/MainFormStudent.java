@@ -1,22 +1,20 @@
 package view_st;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
+import dto.StudentVO;
 import logic.MainFormStudentLogic;
-
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridLayout;
 
 public class MainFormStudent extends JFrame implements ActionListener {
 
     MainFormStudentLogic mfsl = null;
+    StudentVO svo = null;
 
     JLabel jlb_title = null;
     JLabel jlb_id = null;
@@ -34,6 +32,10 @@ public class MainFormStudent extends JFrame implements ActionListener {
 
     public MainFormStudent() {
 
+    }
+
+    public MainFormStudent(StudentVO svo) {
+        this.svo = svo;
     }
 
     public void initDisplay() {

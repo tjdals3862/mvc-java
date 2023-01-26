@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDMapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LoginMapper">
+  <select id="loginstudent" parameterType="dto.LoginVO" resultType="dto.StudentVO">
+    SELECT studentid, studentname, st_id, st_pw, email, phone FROM student
+    <where>
+      st_id = #{id} AND st_pw = #{password}
+    </where>
+  </select>
+
+  <select id="loginprofessor" parameterType="dto.LoginVO" resultType="dto.ProfessorVO">
+    SELECT professorid, pro_name, pr_id, pr_pw FROM professor
+    <where>
+      pr_id = #{id} AND pr_pw = ${password}
+    </where>
+  </select>
+
+
+</mapper>

@@ -11,8 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import dto.LoginVO;
+import dto.ProfessorVO;
+import dto.StudentVO;
 import logic.LoginLogic;
 import view_pro.MainFormPro;
+import view_st.MainFormStudent;
 
 public class LoginForm extends JFrame implements ActionListener {
   // 선언부
@@ -22,13 +26,18 @@ public class LoginForm extends JFrame implements ActionListener {
   JButton jbtn_join = null;
   JButton jbtn_login = null;;
   JComboBox pro_or_stu = null;
-  LoginLogic loginEvent = null;
+  LoginLogic loginlogic = null;
+  LoginVO lvo = null;
+  StudentVO svo = null;
+  ProfessorVO pvo = null;
   MainFormPro mpf = null;
+  MainFormStudent mfs = null;
   RegisterForm rf = null;
+  String pro[] = { "professor", "student" };
 
   // 생성자
   public LoginForm() {
-    loginEvent = new LoginLogic(this);
+    loginlogic = new LoginLogic(this);
   }
 
   // 화면그리기
@@ -40,7 +49,7 @@ public class LoginForm extends JFrame implements ActionListener {
     jbtn_join = new JButton("회원가입");
     jbtn_login = new JButton("로그인");
     jlb_find = new JLabel("ID찾기/비밀번호찾기");
-    String pro[] = { "professor", "student" };
+
     pro_or_stu = new JComboBox<String>(pro);
     this.setLayout(null);
     this.setVisible(true);
@@ -53,7 +62,7 @@ public class LoginForm extends JFrame implements ActionListener {
     // select
 
     this.add(pro_or_stu);
-    pro_or_stu.setBounds(10, 10, 80, 20);
+    pro_or_stu.setBounds(10, 10, 110, 20);
 
     // id label
     this.add(jlb_id);
@@ -100,9 +109,33 @@ public class LoginForm extends JFrame implements ActionListener {
     Object obj = e.getSource();
 
     if (obj == jbtn_login) {
-      mpf = new MainFormPro();
-      mpf.initDisplay();
-      this.dispose();
+
+      String select = pro[pro_or_stu.getSelectedIndex()];
+      String id = jtf_id.getText();
+      String pw = jpf_pw.getText();
+      lvo = new LoginVO(select, id, pw);
+      int result = 0;
+
+      if (select.equals("professor")) {
+        pvo = loginlogic.Professorlogin(lvo);
+        result = loginlogic.ProfessorLoginCheck(pvo, id);
+      } else if (select.equals("student")) {
+        svo = loginlogic.Studentlogin(lvo);
+        result = loginlogic.StudentLoginCheck(svo, id);
+      }
+
+      if (result == 1) {
+        mpf = new MainFormPro(pvo);
+        mpf.initDisplay();
+        this.dispose();
+      } else if (result == 2) {
+        mfs = new MainFormStudent(svo);
+        mfs.initDisplay();
+        this.dispose();
+      } else {
+        System.out.println("로그인 실패");
+      }
+
     } else if (obj == jbtn_join) {
       rf = new RegisterForm();
       rf.initDisplay();
