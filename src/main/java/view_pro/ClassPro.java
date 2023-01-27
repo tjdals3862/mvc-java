@@ -2,7 +2,6 @@ package view_pro;
 
 // 수업관리/교수
 import java.awt.Font;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,8 +14,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import dto.ProfessorVO;
 import logic.ClassProLogic;
-import logic.GradeCheckProLogic;
 
 public class ClassPro extends JFrame implements ActionListener {
 
@@ -40,6 +39,11 @@ public class ClassPro extends JFrame implements ActionListener {
   JScrollPane jsp_grade = null;
 
   ClassProLogic cpl = null;
+  ProfessorVO pvo = null;
+
+  public ClassPro(ProfessorVO pvo) {
+    this.pvo = pvo;
+  }
 
   public void initDisplay() {
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -58,7 +62,7 @@ public class ClassPro extends JFrame implements ActionListener {
     jbtn_lecturedel = new JButton("강의삭제");
     jbtn_cancel = new JButton("취소");
 
-    cpl = new ClassProLogic(this);
+    cpl = new ClassProLogic(this, pvo);
     prolist = cpl.getProList();
     jcb_professor = new JComboBox(prolist);
     f = new Font("굴림체", Font.BOLD, 16);
@@ -93,12 +97,7 @@ public class ClassPro extends JFrame implements ActionListener {
     this.setLocation(500, 100);
     this.setSize(630, 400);
     this.setVisible(true);
-
-  }
-
-  public static void main(String[] args) {
-    ClassPro cpo = new ClassPro();
-    cpo.initDisplay();
+    this.setResizable(false);
   }
 
   @Override

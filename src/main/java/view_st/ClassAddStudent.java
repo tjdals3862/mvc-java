@@ -85,6 +85,7 @@ public class ClassAddStudent extends JFrame implements ActionListener {
     this.setLocation(500, 100);
     this.setSize(630, 400);
     this.setVisible(true);
+    this.setResizable(false);
 
   }
 

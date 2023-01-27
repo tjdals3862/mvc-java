@@ -2,7 +2,6 @@ package view_pro;
 
 // 성적확인
 import java.awt.Font;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import dto.ProfessorVO;
 import logic.GradeCheckProLogic;
 
 public class GradeCheckPro extends JFrame implements ActionListener {
@@ -36,6 +36,11 @@ public class GradeCheckPro extends JFrame implements ActionListener {
   JScrollPane jsp_grade = null;
 
   GradeCheckProLogic gcpl = null;
+  public ProfessorVO pvo = null;
+
+  public GradeCheckPro(ProfessorVO pvo) {
+    this.pvo = pvo;
+  }
 
   public void initDisplay() {
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -54,7 +59,7 @@ public class GradeCheckPro extends JFrame implements ActionListener {
     jlb_title.setFont(f);
     jlb_semititle.setFont(f);
 
-    gcpl = new GradeCheckProLogic(this);
+    gcpl = new GradeCheckProLogic(this, pvo);
     lecture = gcpl.getLectureList();
     jcb_lecture = new JComboBox(lecture);
 
@@ -86,13 +91,8 @@ public class GradeCheckPro extends JFrame implements ActionListener {
     this.setLocation(500, 100);
     this.setSize(630, 400);
     this.setVisible(true);
+    this.setResizable(false);
 
-  }
-
-  public static void main(String[] args) {
-    GradeCheckPro gcp = new GradeCheckPro();
-
-    gcp.initDisplay();
   }
 
   @Override

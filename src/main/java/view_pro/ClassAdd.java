@@ -73,11 +73,7 @@ public class ClassAdd extends JFrame implements ActionListener {
     this.setLocation(500, 100);
     this.setSize(350, 350);
     this.setVisible(true);
-  }
-
-  public static void main(String[] args) {
-    ClassAdd ca = new ClassAdd();
-    ca.initDisplay();
+    this.setResizable(false);
   }
 
   @Override

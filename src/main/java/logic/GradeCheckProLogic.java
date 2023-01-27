@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import dao.GradeCheckDao;
 import dto.GradeProVO;
+import dto.ProfessorVO;
 import view_pro.GradeCheckPro;
 import view_pro.Inputgrade;
 import view_pro.MainFormPro;
@@ -18,13 +19,15 @@ public class GradeCheckProLogic {
   Inputgrade input = null;
   MainFormPro main = null;
   String lecture = null;
+  ProfessorVO pvo = null;
 
   public GradeCheckProLogic() {
 
   }
 
-  public GradeCheckProLogic(GradeCheckPro gradecheckPro) {
+  public GradeCheckProLogic(GradeCheckPro gradecheckPro, ProfessorVO pvo) {
     this.gcp = gradecheckPro;
+    this.pvo = pvo;
   }
 
   public String[] getLectureList() {
@@ -68,7 +71,7 @@ public class GradeCheckProLogic {
 
   // 취소 버튼
   public void cancel() {
-    main = new MainFormPro();
+    main = new MainFormPro(pvo);
     main.initDisplay();
   }
 

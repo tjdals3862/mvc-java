@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import dao.ClassDao;
 import dao.GradeCheckDao;
 import dto.LectureVO;
+import dto.ProfessorVO;
 import util.MyBatisCommonFactory;
 import view_pro.ClassAdd;
 import view_pro.ClassPro;
@@ -27,13 +28,15 @@ public class ClassProLogic {
   private String professor = null;
   private String lecture = null;
   private String lectime = null;
+  ProfessorVO pvo = null;
 
   public ClassProLogic() {
 
   }
 
-  public ClassProLogic(ClassPro classpro) {
+  public ClassProLogic(ClassPro classpro, ProfessorVO pvo) {
     this.classpro = classpro;
+    this.pvo = pvo;
   }
 
   public String[] getProList() {
@@ -105,7 +108,7 @@ public class ClassProLogic {
   }
 
   public void cancel() {
-    MainFormPro main = new MainFormPro();
+    MainFormPro main = new MainFormPro(pvo);
     main.initDisplay();
     classpro.dispose();
   }

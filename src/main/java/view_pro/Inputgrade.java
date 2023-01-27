@@ -83,12 +83,8 @@ public class Inputgrade extends JFrame implements ActionListener, ItemListener {
     this.setLocation(500, 100);
     this.setSize(400, 300);
     this.setVisible(true);
+    this.setResizable(false);
 
-  }
-
-  public static void main(String[] args) {
-    Inputgrade ig = new Inputgrade();
-    ig.initDisplay();
   }
 
   @Override
@@ -115,12 +111,7 @@ public class Inputgrade extends JFrame implements ActionListener, ItemListener {
         String student = inputlogic.students[jcb_student.getSelectedIndex()];
         grade = Integer.parseInt(jtf_grade.getText());
 
-        System.out.println(lecture);
-        System.out.println(student);
-        System.out.println(grade);
-
         int result = inputlogic.input(lecture, student, grade);
-        System.out.println(result);
         // 결과값이 1일때 성공
         if (result == 1) {
           jtf_grade.setText("");
