@@ -30,6 +30,21 @@ public class GradeCheckDao {
     return lecList;
   }
 
+  // // 강의 데이터들 조회(전체 강의)===================================
+  // public List<String> getTotalLectureList() {
+  //   SqlSessionFactory sqlSessionFactory = null;
+  //   SqlSession sqlSession = null;
+  //   List<String> lecTotalList = null;
+  //   try {
+  //     sqlSessionFactory = mcf.getSqlSessionFactory();
+  //     sqlSession = sqlSessionFactory.openSession();
+  //     lecTotalList = sqlSession.selectList("getTotalLecture");
+  //   } catch (Exception e) {
+  //     e.printStackTrace();
+  //   }
+  //   return lecTotalList;
+  // }
+
   // 교수 조회
   public List<String> getProList() {
     SqlSessionFactory sqlSessionFactory = null;

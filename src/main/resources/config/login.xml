@@ -11,7 +11,7 @@
   <select id="loginprofessor" parameterType="dto.LoginVO" resultType="dto.ProfessorVO">
     SELECT professorid, pro_name, pr_id, pr_pw FROM professor
     <where>
-      pr_id = #{id} AND pr_pw = ${password}
+      pr_id = #{id} AND pr_pw = #{password}
     </where>
   </select>
 

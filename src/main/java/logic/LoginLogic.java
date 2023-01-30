@@ -39,9 +39,12 @@ public class LoginLogic {
     try {
       if (id.equals(svo.getSt_id())) {
         result = 2;
+        System.out.println("test 1");
       }
     } catch (NullPointerException e) {
       result = 0;
+      System.out.println("test 2");
+
     }
     return result;
   }

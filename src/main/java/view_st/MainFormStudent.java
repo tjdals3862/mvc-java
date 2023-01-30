@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 
 import dto.StudentVO;
 import logic.MainFormStudentLogic;
+import view.LoginForm;
 
 public class MainFormStudent extends JFrame implements ActionListener {
 
@@ -60,7 +61,6 @@ public class MainFormStudent extends JFrame implements ActionListener {
         this.add(jbtn_grade);
         this.add(jbtn_leture);
 
-        mfsl = new MainFormStudentLogic(this);
         jbtn_logout.addActionListener(this);
         jbtn_grade.addActionListener(this);
         jbtn_leture.addActionListener(this);
@@ -86,15 +86,23 @@ public class MainFormStudent extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Object obj = e.getSource();
+        mfsl = new MainFormStudentLogic(this, svo);
 
-        Object obj = new Object();
         if (obj == jbtn_logout) {
+            mfsl.logout();
+            System.out.println("로그아웃하겠슴둥");
             // 로그아웃 로직
+
         } else if (obj == jbtn_grade) {
             // 성적확인 로직
+
         } else if (obj == jbtn_leture) {
+            mfsl.lecture();
+            System.out.println("안눌리나?");
+
             // 강의확인 로직
         }
-
     }
+
 }

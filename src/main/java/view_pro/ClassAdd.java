@@ -76,6 +76,11 @@ public class ClassAdd extends JFrame implements ActionListener {
     this.setResizable(false);
   }
 
+  public static void main(String[] args) {
+    ClassAdd ca = new ClassAdd();
+    ca.initDisplay();
+    }
+
   @Override
   public void actionPerformed(ActionEvent e) {
     Object obj = e.getSource();

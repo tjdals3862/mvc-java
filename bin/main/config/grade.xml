@@ -18,4 +18,12 @@
         </where>          
     </select>
 
+
+    <insert id="getlecturemylecture" parameterType="dto.LectureVO">
+        insert into grade values (#{lecture}, #{studentname}, #{credit})            
+    </insert>
+
+
+
+
 </mapper>

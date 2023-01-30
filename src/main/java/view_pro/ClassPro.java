@@ -39,11 +39,13 @@ public class ClassPro extends JFrame implements ActionListener {
   JScrollPane jsp_grade = null;
 
   ClassProLogic cpl = null;
-  ProfessorVO pvo = null;
+  static ProfessorVO pvo = null;
 
   public ClassPro(ProfessorVO pvo) {
     this.pvo = pvo;
   }
+
+
 
   public void initDisplay() {
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -99,6 +101,12 @@ public class ClassPro extends JFrame implements ActionListener {
     this.setVisible(true);
     this.setResizable(false);
   }
+  public static void main(String[] args) {
+    ClassPro cp = new ClassPro(pvo);
+    cp.initDisplay();
+  }
+
+  
 
   @Override
   public void actionPerformed(ActionEvent e) {

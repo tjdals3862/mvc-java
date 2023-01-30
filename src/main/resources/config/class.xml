@@ -9,6 +9,23 @@
         </where>
     </select>
 
+
+    <select id="getTotalLecture" parameterType="String" resultType="dto.LectureVO">
+       SELECT lecture, professor, lectime FROM lecture
+       <where>
+          lecture = #{lecture}
+        </where>
+    </select>
+
+    <select id="getProTotalLecture" parameterType="String" resultType="dto.LectureVO">
+       SELECT lecture, professor, lectime FROM lecture
+       <where>
+          professor = #{professor}
+        </where>
+    </select>
+
+
+
     <insert id="getinsertlecture" parameterType="dto.LectureVO">
         insert into lecture values (#{lecture}, #{professor}, #{lectime})            
     </insert>

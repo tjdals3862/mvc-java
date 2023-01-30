@@ -26,6 +26,43 @@ public class ClassDao {
     return gradeList;
   }
 
+  // 강의 목록 조회(강의명.....에 해당하는 강의 조회)
+  public List<LectureVO> getLecture2(String lecture) {
+    SqlSessionFactory sqlSessionFactory = null;
+    SqlSession sqlSession = null;
+    List<LectureVO> totalLectureList = null;
+    try {
+      sqlSessionFactory = mcf.getSqlSessionFactory();
+      sqlSession = sqlSessionFactory.openSession();
+      totalLectureList = sqlSession.selectList("getTotalLecture", lecture);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return totalLectureList;
+  }
+
+
+  public List<LectureVO> getLecture3(String lecture) {
+    SqlSessionFactory sqlSessionFactory = null;
+    SqlSession sqlSession = null;
+    List<LectureVO> totalLectureList = null;
+    try {
+      sqlSessionFactory = mcf.getSqlSessionFactory();
+      sqlSession = sqlSessionFactory.openSession();
+      totalLectureList = sqlSession.selectList("getProTotalLecture", lecture);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return totalLectureList;
+  }
+
+
+
+
+
+
+
+
   // 강의 추가(교수)
   // 성공시 1을 return 함
   public int getinsertlecture(LectureVO lVO) {

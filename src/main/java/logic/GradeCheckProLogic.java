@@ -2,24 +2,29 @@ package logic;
 
 import java.util.List;
 import java.util.Vector;
-
+import dao.ClassDao;
 import dao.GradeCheckDao;
 import dto.GradeProVO;
 import dto.ProfessorVO;
 import view_pro.GradeCheckPro;
 import view_pro.Inputgrade;
 import view_pro.MainFormPro;
+import dto.LectureVO;
+import view_pro.ClassPro;
 
 public class GradeCheckProLogic {
 
   String[] gradearr = null;
   String[] leclist = null;
+  String[] lectotallist = null;
   GradeCheckDao gcd = null;
   GradeCheckPro gcp = null;
   Inputgrade input = null;
   MainFormPro main = null;
   String lecture = null;
   ProfessorVO pvo = null;
+  ClassDao cd = null;
+  ClassPro classpro = null;
 
   public GradeCheckProLogic() {
 
@@ -37,6 +42,7 @@ public class GradeCheckProLogic {
 
     for (int i = 0; i < leclist.length; i++) {
       leclist[i] = lectureList.get(i);
+
     }
 
     return leclist;
