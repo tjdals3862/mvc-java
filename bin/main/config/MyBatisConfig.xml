@@ -18,5 +18,7 @@
     <mapper resource="config/class.xml"/>
     <mapper resource="config/login.xml"/>
 
+    
+
   </mappers>
 </configuration>

@@ -61,7 +61,7 @@ public class ClassAddStudent extends JFrame implements ActionListener {
     jsp_grade = new JScrollPane(jtb_grade, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-    jbtn_search = new JButton("검색");
+    jbtn_search = new JButton("나는 장식");
     jlb_title = new JLabel("수강 신청");
     jlb_semititle = new JLabel("교수");
     jbtn_lectureadd = new JButton("수강신청");
@@ -116,16 +116,12 @@ public class ClassAddStudent extends JFrame implements ActionListener {
       }
     });
 
-
     // =========================여기건드는중================
     // int row = dtm_grade.getSelectedRow();
     // int col = dtm_grade.getSelectedColumn();
-    //  Object value = dtm_grade.getValueAt(row, col);
-    
-    //  =========================여기건드는중================
+    // Object value = dtm_grade.getValueAt(row, col);
 
-
-
+    // =========================여기건드는중================
 
     jcb_lecture.setBounds(245, 60, 240, 30);
     jsp_grade.setBounds(0, 100, 490, 350);
@@ -153,11 +149,11 @@ public class ClassAddStudent extends JFrame implements ActionListener {
       // 수강신청
       // 선택한 과목을 추가
 
-
       // 이미 추가한 과목일시 error message
-
+      casl.myLectureSelect();
     } else if (obj == jbtn_cancel) {
       // 취소버튼 => 이전 페이지로 이동
+      this.dispose();
     }
   }
 }

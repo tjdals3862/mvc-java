@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDMapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="signUp">
+
+   <insert id="signUpStudent" parameterType="dto.StudentVO">
+        insert into student values (#{studentid}, #{studentname}, #{st_id}, #{st_pw}, #{email}, #{phone})            
+    </insert>
+
+</mapper>

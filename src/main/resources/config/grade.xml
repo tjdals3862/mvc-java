@@ -14,9 +14,10 @@
         select a.lecture, professor, studentname, lectime, credit from lecture a, grade b        
         <where>
         a.lecture = b.lecture
-         and a.lecture = '${lecture}'
+         and a.lecture = '#{lecture}'
         </where>          
     </select>
+
 
 
     <insert id="getlecturemylecture" parameterType="dto.LectureVO">

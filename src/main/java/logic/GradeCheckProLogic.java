@@ -11,8 +11,11 @@ import view_pro.Inputgrade;
 import view_pro.MainFormPro;
 import dto.LectureVO;
 import view_pro.ClassPro;
+import view_st.ClassAddStudent;
+
 
 public class GradeCheckProLogic {
+  ClassAddStudent cas = null;
 
   String[] gradearr = null;
   String[] leclist = null;
@@ -47,6 +50,10 @@ public class GradeCheckProLogic {
 
     return leclist;
   }
+
+
+
+
 
   public void getLecture(String lecture) {
     List<GradeProVO> gradelist = gcd.getgradeproList(lecture);

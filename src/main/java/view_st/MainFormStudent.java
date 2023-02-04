@@ -96,6 +96,7 @@ public class MainFormStudent extends JFrame implements ActionListener {
 
         } else if (obj == jbtn_grade) {
             // 성적확인 로직
+            mfsl.gradeCheckView();
 
         } else if (obj == jbtn_leture) {
             mfsl.lecture();
@@ -104,5 +105,6 @@ public class MainFormStudent extends JFrame implements ActionListener {
             // 강의확인 로직
         }
     }
+
 
 }

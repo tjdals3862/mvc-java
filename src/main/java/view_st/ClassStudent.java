@@ -19,6 +19,7 @@ import dao.ClassDao;
 // import dto.ClassVO;
 import dto.LectureVO;
 import dto.StudentVO;
+import logic.ClassAddStudentLogic;
 import logic.ClassStudentLogic;
 import logic.GradeCheckProLogic;
 import logic.MainFormStudentLogic;
@@ -31,9 +32,14 @@ public class ClassStudent extends JFrame implements ActionListener {
   public JButton jbtn_lecturedel = null;
   public JButton jbtn_cancel = null;
   public JComboBox jcb_lecture = null;
+  public JComboBox hihi = null;
+
   Font f = null;
   ClassDao cd = null;
   String totals[] = { "전체" };
+
+  String myLecture[] = null;
+
   String[] cols = { "수업명", "교수", "시간" };
   String[][] data = new String[0][0];
   public String[] lecturelist = null; // db에서 가져온 강의목록
@@ -44,6 +50,7 @@ public class ClassStudent extends JFrame implements ActionListener {
 
   GradeCheckProLogic gsl = null;
   ClassStudentLogic csl = null;
+  ClassAddStudentLogic casl = null;
 
   StudentVO svo = null;
 
@@ -61,7 +68,7 @@ public class ClassStudent extends JFrame implements ActionListener {
     jsp_grade = new JScrollPane(jtb_grade, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-    jbtn_search = new JButton("새로고침");
+    jbtn_search = new JButton("나도 장식");
     jlb_title = new JLabel("수업 관리");
     jlb_semititle = new JLabel("수업");
     jbtn_lectureadd = new JButton("수강신청");
@@ -71,8 +78,10 @@ public class ClassStudent extends JFrame implements ActionListener {
     csl = new ClassStudentLogic(this, svo);
     // =======================================여기....==============================
     gsl = new GradeCheckProLogic();
+    casl = new ClassAddStudentLogic();
     lecturelist = gsl.getLectureList();
     jcb_lecture = new JComboBox(lecturelist);
+    hihi = new JComboBox(totals);
 
     f = new Font("굴림체", Font.BOLD, 16);
 
@@ -87,6 +96,8 @@ public class ClassStudent extends JFrame implements ActionListener {
     this.add(jbtn_lecturedel);
     this.add(jbtn_cancel);
     this.add(jcb_lecture);
+    this.add(hihi);
+
 
     jbtn_search.addActionListener(this);
     jbtn_lectureadd.addActionListener(this);
@@ -123,6 +134,7 @@ public class ClassStudent extends JFrame implements ActionListener {
     jbtn_lectureadd.setBounds(500, 130, 100, 30);
     jbtn_lecturedel.setBounds(500, 200, 100, 30);
     jbtn_cancel.setBounds(500, 270, 100, 30);
+    hihi.setBounds(245, 30, 240, 30);
 
     this.setTitle("수업 관리/학생");
     this.setLocation(500, 100);
@@ -138,15 +150,17 @@ public class ClassStudent extends JFrame implements ActionListener {
     if (obj == jbtn_search) {
       // 새로고침로직
       // 새로고침시 테이블 초기화
+      //버튼 삭제 예정....
 
     } else if (obj == jbtn_lectureadd) {
-      // 강의 추가 로직
+      // 수강신청으로 이동 
       csl.lectureAddStudent();
 
 
     } else if (obj == jbtn_lecturedel) {
       // 수강 취소 로직
       // 테이블 선택시 선택한 과목 삭제
+      csl.lectureDelete();
 
     } else if (obj == jbtn_cancel) {
       // 취소 로직

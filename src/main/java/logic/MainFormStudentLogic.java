@@ -4,6 +4,7 @@ import view.LoginForm;
 import dto.StudentVO;
 import view_st.MainFormStudent;
 import view_st.ClassStudent;
+import view_st.GradeCheck;
 
 public class MainFormStudentLogic {
 
@@ -11,6 +12,7 @@ public class MainFormStudentLogic {
   LoginForm lf = null;
   StudentVO svo = null;
   ClassStudent cs = null;
+  GradeCheck gc = null;
 
   public MainFormStudentLogic(MainFormStudent mainFormStudent, StudentVO svo) {
     this.mainFormStudent = mainFormStudent;
@@ -29,6 +31,12 @@ public class MainFormStudentLogic {
     cs = new ClassStudent(svo);
     cs.initDisplay();
     mainFormStudent.dispose();
+  }
+
+  // gradecheck
+  public void gradeCheckView() {
+    gc = new GradeCheck();
+    gc.initDisplay();
   }
 
 }
