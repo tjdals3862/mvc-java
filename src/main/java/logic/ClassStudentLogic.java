@@ -50,7 +50,7 @@ public class ClassStudentLogic {
     main.initDisplay();
   }
 
-  // 삭제 ===========================수정해야함(아예 강의 삭제되는중...ㅋㅋㅋㅋ)
+  // 삭제 ===========================
   public void myLectureDelete() {
     cd = new ClassDao();
     int row = classStudent.jtb_grade.getSelectedRow();

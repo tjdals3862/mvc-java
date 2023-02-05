@@ -24,7 +24,7 @@ public class LoginLogic {
   public StudentVO Studentlogin(LoginVO lvo) {
     LoginDao logindao = new LoginDao();
     svo = logindao.loginstudent(lvo);
-    return svo; // {select: "셀렉트박스로 입력한 값", id="value", pw="value"}
+    return svo; //
   }
 
   public ProfessorVO Professorlogin(LoginVO lvo) {

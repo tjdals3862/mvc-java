@@ -53,10 +53,6 @@ public class RegisterForm extends JFrame implements ActionListener {
     jbtn_cancel = new JButton("취소");// 취소 버튼
     pro_or_stu = new JComboBox<String>(pro);
 
-    // =======================사용예정 >_<==================
-    // jlb_idAvble = new JLabel("사용가능한 아이디 입니다.");
-    // jlb_idNotAvble = new JLabel("중복된 아이디 입니다.");
-    // ========================여기까지 >_<=================
 
     this.setLayout(null);
     this.setVisible(true);
