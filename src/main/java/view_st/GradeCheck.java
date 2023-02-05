@@ -1,11 +1,11 @@
 package view_st;
 
+import java.awt.Font;
 // 성적확인
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
-import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,11 +15,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import logic.GradeCheckLogic;
-import logic.GradeCheckProLogic;
+
 import dao.ClassDao;
 import dao.GradeCheckDao;
+import dto.GradeCheckVO;
 import dto.LectureVO;
+import dto.StudentVO;
+import logic.GradeCheckLogic;
+import logic.GradeCheckProLogic;
 
 public class GradeCheck extends JFrame implements ActionListener {
   JLabel jlb_title = null;
@@ -43,6 +46,12 @@ public class GradeCheck extends JFrame implements ActionListener {
   JTableHeader jth_grade = null;
   JScrollPane jsp_grade = null;
   GradeCheckLogic gsc = null;
+  StudentVO svo = null;
+  GradeCheckVO gcvo = null;
+
+  public GradeCheck(StudentVO svo) {
+    this.svo = svo;
+  }
 
   public void initDisplay() {
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -102,7 +111,8 @@ public class GradeCheck extends JFrame implements ActionListener {
       public void actionPerformed(ActionEvent e) {
         cd = new ClassDao();
         gcd = new GradeCheckDao();
-        List<LectureVO> gradelist = gcd.getLectureList2(jcb_lecture.getSelectedItem().toString());
+        gcvo = new GradeCheckVO(jcb_lecture.getSelectedItem().toString(), svo.getStudentname());
+        List<LectureVO> gradelist = gcd.getLectureList2(gcvo);
 
         // 이미 테이블에 조회된 정보가 있는 경우 모두 삭제함
         while (dtm_grade.getRowCount() > 0) {
@@ -117,17 +127,12 @@ public class GradeCheck extends JFrame implements ActionListener {
           result.add(gpvo.getLecture());
           result.add(gpvo.getProfessor());
           result.add(gpvo.getLectime());
-          result.add(gpvo.getCredit());
+          result.add(Integer.toString(gpvo.getCredit()));
 
           dtm_grade.addRow(result);
         }
       }
     });
-  }
-
-  public static void main(String[] args) {
-    GradeCheck gc = new GradeCheck();
-    gc.initDisplay();
   }
 
   @Override

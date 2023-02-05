@@ -34,8 +34,8 @@ public class MainFormStudentLogic {
   }
 
   // gradecheck
-  public void gradeCheckView() {
-    gc = new GradeCheck();
+  public void gradeCheckView(StudentVO svo) {
+    gc = new GradeCheck(svo);
     gc.initDisplay();
   }
 

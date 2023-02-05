@@ -1,13 +1,11 @@
 package dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.reflection.SystemMetaObject;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import dto.GradeCheckVO;
 import dto.GradeProVO;
 import dto.LectureVO;
 import util.MyBatisCommonFactory;
@@ -61,16 +59,16 @@ public class GradeCheckDao {
     }
     return gradeList;
   }
-  
-  //성적조회 -- 수정중
-  public List<LectureVO> getLectureList2(String lecture) {
+
+  // 성적조회 -- 수정중
+  public List<LectureVO> getLectureList2(GradeCheckVO gcvo) {
     SqlSessionFactory sqlSessionFactory = null;
     SqlSession sqlSession = null;
     List<LectureVO> lecList = null;
     try {
       sqlSessionFactory = mcf.getSqlSessionFactory();
       sqlSession = sqlSessionFactory.openSession();
-      lecList = sqlSession.selectList("getMyGrade", lecture);
+      lecList = sqlSession.selectList("getMyGrade", gcvo);
       System.out.println(lecList);
     } catch (Exception e) {
       e.printStackTrace();

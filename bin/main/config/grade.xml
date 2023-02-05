@@ -18,11 +18,14 @@
         </where>          
     </select>
 
-    <select id="getMyGrade" parameterType="String" resultType="String">
-        select  A.LECTURE,
- A.PROFESSOR  ,A.LECTIME, 
-  B.CREDIT   from
-  lecture a , grade b
+    <select id="getMyGrade" parameterType="dto.GradeCheckVO" resultType="dto.LectureVO">
+        SELECT a.lecture, a.professor, a.lectime, b.credit
+        FROM lecture a, grade b
+        <where>
+            a.lecture = b.lecture
+            AND a.lecture = #{lecture}
+            AND b.studentname = #{studentname}
+        </where>
     </select>
 
 

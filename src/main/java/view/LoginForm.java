@@ -124,7 +124,6 @@ public class LoginForm extends JFrame implements ActionListener {
         svo = loginlogic.Studentlogin(lvo);
         result = loginlogic.StudentLoginCheck(svo, id);
       }
-
       if (result == 1) {
         mpf = new MainFormPro(pvo);
         mpf.initDisplay();
