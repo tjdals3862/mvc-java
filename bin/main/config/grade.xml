@@ -18,9 +18,16 @@
         </where>          
     </select>
 
+    <select id="getMyGrade" parameterType="String" resultType="String">
+        select  A.LECTURE,
+ A.PROFESSOR  ,A.LECTIME, 
+  B.CREDIT   from
+  lecture a , grade b
+    </select>
 
 
-    <insert id="getlecturemylecture" parameterType="dto.LectureVO">
+
+    <insert id="myLectureGrade" parameterType="dto.LectureVO">
         insert into grade values (#{lecture}, #{studentname}, #{credit})            
     </insert>
 

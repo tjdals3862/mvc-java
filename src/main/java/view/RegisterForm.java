@@ -2,30 +2,30 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import dao.SignUpDao;
+import dto.SignUpVO;
 
 public class RegisterForm extends JFrame implements ActionListener {
   // 선언부
 
-  // ==========사용예정 >_<============
-  // LoginForm loginForm = null;
-  // DBCon db = null;
-  // Connection conn = null;
-  // PreparedStatement pstm = null;
-  // ResultSet rs = null;
-  // DbFunction dbf = null;
-  // JLabel jlb_idAvble, jlb_idNotAvble;
-  // ==========여기까지 >_<============
-
-  JLabel jlb_name, jlb_id, jlb_pw, jlb_pw2, jlb_birth, jlb_tel, jlb_nickName;
+  JLabel jlb_name, jlb_id, jlb_pw, jlb_pw2, jlb_email, jlb_tel, jlb_nickName;
   JTextField jtf_name, jtf_id;
   JPasswordField jtf_pw, jtf_pw2;
-  JTextField jtf_birth, jtf_tel, jtf_nickName;
+  JTextField jtf_email, jtf_tel, jtf_nickName;
   JButton jbtn_idconfirm, jbtn_join, jbtn_cancel;
+  JComboBox pro_or_stu = null;
+  String pro[] = { "professor", "student" };
+  SignUpVO suvo = null;
+  SignUpDao sdao = null;
 
   // 생성자
   public RegisterForm() {
@@ -38,19 +38,20 @@ public class RegisterForm extends JFrame implements ActionListener {
     jlb_id = new JLabel("아이디 : ");
     jlb_pw = new JLabel("비밀번호 : ");
     jlb_pw2 = new JLabel("비밀번호확인 : ");
-    jlb_birth = new JLabel("      email : ");
+    jlb_email = new JLabel("      email : ");
     jlb_tel = new JLabel("전화번호 : ");
     jlb_nickName = new JLabel("닉네임 : ");
     jtf_name = new JTextField(""); // 이름
     jtf_id = new JTextField(""); // 아이디
     jtf_pw = new JPasswordField(""); // 비밀번호
     jtf_pw2 = new JPasswordField(""); // 비밀번호 확인
-    jtf_birth = new JTextField(""); // 생년월일
+    jtf_email = new JTextField(""); // email
     jtf_tel = new JTextField(""); // 폰번호
     jtf_nickName = new JTextField(""); // 닉네임
     jbtn_idconfirm = new JButton("ID 확인"); // 로그인 버튼
     jbtn_join = new JButton("회원가입");// 회원가입 버튼
     jbtn_cancel = new JButton("취소");// 취소 버튼
+    pro_or_stu = new JComboBox<String>(pro);
 
     // =======================사용예정 >_<==================
     // jlb_idAvble = new JLabel("사용가능한 아이디 입니다.");
@@ -64,6 +65,10 @@ public class RegisterForm extends JFrame implements ActionListener {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setSize(600, 420);
     this.setResizable(false);
+
+    // select
+    this.add(pro_or_stu);
+    pro_or_stu.setBounds(10, 10, 110, 20);
 
     // name
     this.add(jlb_name);
@@ -91,10 +96,10 @@ public class RegisterForm extends JFrame implements ActionListener {
     this.add(jtf_pw2);
     jtf_pw2.setBounds(220, 170, 180, 35);
     // birth
-    this.add(jlb_birth);
-    jlb_birth.setBounds(155, 210, 200, 35);
-    this.add(jtf_birth);
-    jtf_birth.setBounds(220, 210, 180, 35);
+    this.add(jlb_email);
+    jlb_email.setBounds(155, 210, 200, 35);
+    this.add(jtf_email);
+    jtf_email.setBounds(220, 210, 180, 35);
     // tel
     this.add(jlb_tel);
     jlb_tel.setBounds(155, 250, 200, 35);
@@ -123,6 +128,30 @@ public class RegisterForm extends JFrame implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     // TODO Auto-generated method stub
+    Object obj = e.getSource();
 
+    if (obj == jbtn_idconfirm) {
+
+    } else if (obj == jbtn_join) {
+      String name = jtf_name.getText();
+      String id = jtf_id.getText();
+      String pw = jtf_pw.getText();
+      String pw2 = jtf_pw2.getText();
+      String email = jtf_email.getText();
+      String phone = jtf_tel.getText();
+      String nickName = jtf_nickName.getText();
+      suvo = new SignUpVO(name, id, pw, email, phone);
+      int result = sdao.signUpStudent();
+      System.out.println("RESULT ::: " + result);
+      if (result == 2) {
+        // JOptionPane.showMessageDialog(rootPane, "hi");
+
+      } else {
+        // JOptionPane.showMessageDialog(rootPane, "hello");
+
+      }
+    } else if (obj == jbtn_cancel) {
+
+    }
   }
 }

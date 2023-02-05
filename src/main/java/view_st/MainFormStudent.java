@@ -34,8 +34,8 @@ public class MainFormStudent extends JFrame implements ActionListener {
     }
 
     public MainFormStudent(StudentVO svo) {
-        this.svo = svo;
-        this.id = svo.getStudentid();
+        this.svo = svo; 
+        this.id = svo.getStudentid(); //{select : "value", id:"value", pw:"value"}
         this.name = svo.getStudentname();
     }
 

@@ -7,28 +7,37 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.LoginVO;
 import dto.ProfessorVO;
+import dto.SignUpVO;
 import dto.StudentVO;
+import view.RegisterForm;
+
 import util.MyBatisCommonFactory;
 
-public class LoginDao {
+public class SignUpDao {
   MyBatisCommonFactory mcf = new MyBatisCommonFactory();
 
-  // 학생 로그인 체크
-  public StudentVO loginstudent(LoginVO lvo) {
-    SqlSessionFactory sqlSessionFactory = null;
-    SqlSession sqlSession = null;
-    StudentVO student = null;
-    try {
-      sqlSessionFactory = mcf.getSqlSessionFactory();
-      sqlSession = sqlSessionFactory.openSession();
-      student = sqlSession.selectOne("loginstudent", lvo);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return student; // {select: "셀렉트박스로 입력한 값", id="value", pw="value"}
+  // 학생 회원가입
+  public int signUpStudent() {
+    int result = 0;
+    // SqlSessionFactory sqlSessionFactory = null;
+    // SqlSession sqlSession = null;
+    // int result = 0;
+
+    // try {
+    // System.out.println("TEST!!!!");
+    // sqlSessionFactory = mcf.getSqlSessionFactory();
+    // sqlSession = sqlSessionFactory.openSession();
+    // sqlSession.selectOne("signUpStudent", suvo);
+    // result = 2;
+    // } catch (Exception e) {
+    // System.out.println("TEST@@@@");
+    // result = 0;
+    // }
+    // System.out.println("RESULTS :::::: :: " + result);
+    return result;
   }
 
-  // 교수 로그인 체크
+  // 교수 회원가입
   public ProfessorVO loginprofessor(LoginVO lvo) {
     SqlSessionFactory sqlSessionFactory = null;
     SqlSession sqlSession = null;
@@ -42,5 +51,4 @@ public class LoginDao {
     }
     return professor;
   }
-
 }

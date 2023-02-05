@@ -46,6 +46,7 @@ public class ClassAddStudent extends JFrame implements ActionListener {
 
   ClassAddStudentLogic casl = null;
   StudentVO svo = null;
+  ClassStudent classStudent = new ClassStudent(svo);
 
   public ClassAddStudent(StudentVO svo) {
     this.svo = svo;
@@ -114,6 +115,7 @@ public class ClassAddStudent extends JFrame implements ActionListener {
           dtm_grade.addRow(result);
         }
       }
+
     });
 
     // =========================여기건드는중================
@@ -150,7 +152,7 @@ public class ClassAddStudent extends JFrame implements ActionListener {
       // 선택한 과목을 추가
 
       // 이미 추가한 과목일시 error message
-      casl.myLectureSelect();
+      casl.myLectureSelect(classStudent);
     } else if (obj == jbtn_cancel) {
       // 취소버튼 => 이전 페이지로 이동
       this.dispose();

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.GradeProVO;
+import dto.LectureVO;
 import util.MyBatisCommonFactory;
 
 public class GradeCheckDao {
@@ -29,21 +30,6 @@ public class GradeCheckDao {
     }
     return lecList;
   }
-
-  // // 강의 데이터들 조회(전체 강의)===================================
-  // public List<String> getTotalLectureList() {
-  //   SqlSessionFactory sqlSessionFactory = null;
-  //   SqlSession sqlSession = null;
-  //   List<String> lecTotalList = null;
-  //   try {
-  //     sqlSessionFactory = mcf.getSqlSessionFactory();
-  //     sqlSession = sqlSessionFactory.openSession();
-  //     lecTotalList = sqlSession.selectList("getTotalLecture");
-  //   } catch (Exception e) {
-  //     e.printStackTrace();
-  //   }
-  //   return lecTotalList;
-  // }
 
   // 교수 조회
   public List<String> getProList() {
@@ -74,6 +60,22 @@ public class GradeCheckDao {
       e.printStackTrace();
     }
     return gradeList;
+  }
+  
+  //성적조회 -- 수정중
+  public List<LectureVO> getLectureList2(String lecture) {
+    SqlSessionFactory sqlSessionFactory = null;
+    SqlSession sqlSession = null;
+    List<LectureVO> lecList = null;
+    try {
+      sqlSessionFactory = mcf.getSqlSessionFactory();
+      sqlSession = sqlSessionFactory.openSession();
+      lecList = sqlSession.selectList("getMyGrade", lecture);
+      System.out.println(lecList);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return lecList;
   }
 
   public static void main(String[] args) {

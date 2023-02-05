@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import dao.ClassDao;
-// import dto.ClassVO;
 import dto.LectureVO;
 import dto.StudentVO;
 import logic.ClassAddStudentLogic;
@@ -31,8 +30,6 @@ public class ClassStudent extends JFrame implements ActionListener {
   public JButton jbtn_lectureadd = null;
   public JButton jbtn_lecturedel = null;
   public JButton jbtn_cancel = null;
-  public JComboBox jcb_lecture = null;
-  public JComboBox hihi = null;
 
   Font f = null;
   ClassDao cd = null;
@@ -53,12 +50,14 @@ public class ClassStudent extends JFrame implements ActionListener {
   ClassAddStudentLogic casl = null;
 
   StudentVO svo = null;
+  Boolean tmp = false;
 
   public ClassStudent(StudentVO svo) {
     this.svo = svo;
   }
 
   public void initDisplay() {
+    tmp = true;
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     this.setLayout(null);
 
@@ -80,8 +79,6 @@ public class ClassStudent extends JFrame implements ActionListener {
     gsl = new GradeCheckProLogic();
     casl = new ClassAddStudentLogic();
     lecturelist = gsl.getLectureList();
-    jcb_lecture = new JComboBox(lecturelist);
-    hihi = new JComboBox(totals);
 
     f = new Font("굴림체", Font.BOLD, 16);
 
@@ -95,38 +92,12 @@ public class ClassStudent extends JFrame implements ActionListener {
     this.add(jbtn_lectureadd);
     this.add(jbtn_lecturedel);
     this.add(jbtn_cancel);
-    this.add(jcb_lecture);
-    this.add(hihi);
-
 
     jbtn_search.addActionListener(this);
     jbtn_lectureadd.addActionListener(this);
     jbtn_lecturedel.addActionListener(this);
     jbtn_cancel.addActionListener(this);
-    jcb_lecture.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        cd = new ClassDao();
-        List<LectureVO> gradelist = cd.getLecture2(jcb_lecture.getSelectedItem().toString());
 
-        // 이미 테이블에 조회된 정보가 있는 경우 모두 삭제함
-        while (dtm_grade.getRowCount() > 0) {
-          dtm_grade.removeRow(0);
-        }
-
-        // 가져온 데이터를 vector에 담아 한줄씩 넣어준다
-        for (int i = 0; i < gradelist.size(); i++) {
-          Vector<String> result = new Vector<>();
-          LectureVO gpvo = new LectureVO();
-          gpvo = gradelist.get(i);
-          result.add(gpvo.getLecture());
-          result.add(gpvo.getProfessor());
-          result.add(gpvo.getLectime());
-          dtm_grade.addRow(result);
-        }
-      }
-    });
-
-    jcb_lecture.setBounds(245, 60, 240, 30);
     jsp_grade.setBounds(0, 100, 490, 350);
     jlb_title.setBounds(250, 10, 250, 30);
     jlb_semititle.setBounds(150, 60, 100, 30);
@@ -134,7 +105,6 @@ public class ClassStudent extends JFrame implements ActionListener {
     jbtn_lectureadd.setBounds(500, 130, 100, 30);
     jbtn_lecturedel.setBounds(500, 200, 100, 30);
     jbtn_cancel.setBounds(500, 270, 100, 30);
-    hihi.setBounds(245, 30, 240, 30);
 
     this.setTitle("수업 관리/학생");
     this.setLocation(500, 100);
@@ -144,18 +114,35 @@ public class ClassStudent extends JFrame implements ActionListener {
 
   }
 
+  public void addTableRow(Vector mycvo) {
+    if (!tmp)
+      this.initDisplay();
+    dtm_grade.addRow(mycvo);
+
+    // // 가져온 데이터를 vector에 담아 한줄씩 넣어준다
+    // for (int i = 0; i < mycvo.size(); i++) {
+    // Vector<String> result = new Vector<>();
+    // LectureVO gpvo = new LectureVO();
+    // gpvo = mycvo.get(i);
+    // result.add(gpvo.getLecture());
+    // result.add(gpvo.getProfessor());
+    // result.add(gpvo.getLectime());
+    // classpro.dtm_grade.addRow(result);
+
+  }
+
   @Override
   public void actionPerformed(ActionEvent e) {
     Object obj = e.getSource();
     if (obj == jbtn_search) {
       // 새로고침로직
       // 새로고침시 테이블 초기화
-      //버튼 삭제 예정....
+      // 버튼 삭제 예정....
 
     } else if (obj == jbtn_lectureadd) {
-      // 수강신청으로 이동 
+      // 수강신청으로 이동
       csl.lectureAddStudent();
-
+      this.dispose();
 
     } else if (obj == jbtn_lecturedel) {
       // 수강 취소 로직

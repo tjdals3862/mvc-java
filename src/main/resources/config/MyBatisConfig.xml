@@ -17,7 +17,7 @@
     <mapper resource="config/student.xml"/>
     <mapper resource="config/class.xml"/>
     <mapper resource="config/login.xml"/>
-
+    <mapper resource="config/signUp.xml"/>
     
 
   </mappers>

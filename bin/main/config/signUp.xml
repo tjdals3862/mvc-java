@@ -6,4 +6,8 @@
         insert into student values (#{studentid}, #{studentname}, #{st_id}, #{st_pw}, #{email}, #{phone})            
     </insert>
 
+    <insert id="signUpProfessor" parameterType="dto.ProfessorVO">
+        insert into professor values (#{professorid}, #{pro_name}, #{pr_id}, #{pr_pw})            
+    </insert>
+
 </mapper>

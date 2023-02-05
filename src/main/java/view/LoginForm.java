@@ -120,7 +120,7 @@ public class LoginForm extends JFrame implements ActionListener {
         pvo = loginlogic.Professorlogin(lvo);
         result = loginlogic.ProfessorLoginCheck(pvo, id);
       } else if (select.equals("student")) {
-        svo = loginlogic.Studentlogin(lvo);
+        svo = loginlogic.Studentlogin(lvo); //{select: "셀렉트박스로 입력한 값", id="value", pw="value"}
         result = loginlogic.StudentLoginCheck(svo, id);
       }
 

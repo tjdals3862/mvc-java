@@ -1,23 +1,16 @@
 package logic;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
-import org.apache.ibatis.annotations.Case;
-
-import dao.GradeCheckDao;
-import dto.GradeProVO;
-import dto.ProfessorVO;
-import view_pro.GradeCheckPro;
-import view_pro.Inputgrade;
-import view_pro.MainFormPro;
-import view_pro.ClassPro;
-import dao.GradeCheckDao;
-
 import dao.ClassDao;
+import dao.GradeCheckDao;
 import dto.LectureVO;
+import dto.StudentVO;
+import view_pro.ClassPro;
 import view_st.ClassAddStudent;
 import view_st.ClassStudent;
 
@@ -27,7 +20,7 @@ public class ClassAddStudentLogic {
   ClassDao cd = null;
   ClassPro classpro = null;
   String[] leclist = null;
-
+  StudentVO svo = null;
   GradeCheckDao gcd = null;
   ClassStudent classStudent = null;
   // ClassAddStudent classAddStudent = null;
@@ -80,7 +73,7 @@ public class ClassAddStudentLogic {
   }
 
   // 강의 선택해서 담기 ===========수정중
-  public void myLectureSelect() {
+  public void myLectureSelect(ClassStudent classStudent) {
 
     int row = cas.jtb_grade.getSelectedRow();
     lecture = (String) cas.dtm_grade.getValueAt(row, 0);
@@ -91,10 +84,9 @@ public class ClassAddStudentLogic {
     mycvo.add(professor);
     mycvo.add(lectime);
 
-    //
+    classStudent.addTableRow(mycvo);
 
     JOptionPane.showMessageDialog(cas, "강의 담기 완료", "Success", 1);
-    System.out.println(mycvo);
     System.out.println(lecture);
 
     // }

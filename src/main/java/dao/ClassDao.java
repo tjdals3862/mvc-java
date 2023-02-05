@@ -42,6 +42,7 @@ public class ClassDao {
   }
 
 
+  // 강의 목록 조회(교수별 강의 조회)
   public List<LectureVO> getLecture3(String lecture) {
     SqlSessionFactory sqlSessionFactory = null;
     SqlSession sqlSession = null;
