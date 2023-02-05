@@ -34,8 +34,8 @@ public class MainFormStudent extends JFrame implements ActionListener {
     }
 
     public MainFormStudent(StudentVO svo) {
-        this.svo = svo; 
-        this.id = svo.getStudentid(); //{select : "value", id:"value", pw:"value"}
+        this.svo = svo;
+        this.id = svo.getStudentid();
         this.name = svo.getStudentname();
     }
 
@@ -91,7 +91,7 @@ public class MainFormStudent extends JFrame implements ActionListener {
 
         if (obj == jbtn_logout) {
             mfsl.logout();
-            System.out.println("로그아웃하겠슴둥");
+            // System.out.println("로그아웃하겠슴둥");
             // 로그아웃 로직
 
         } else if (obj == jbtn_grade) {
@@ -100,11 +100,10 @@ public class MainFormStudent extends JFrame implements ActionListener {
 
         } else if (obj == jbtn_leture) {
             mfsl.lecture();
-            System.out.println("안눌리나?");
+            // System.out.println("안눌리나?");
 
             // 강의확인 로직
         }
     }
-
 
 }

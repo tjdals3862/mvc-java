@@ -26,7 +26,6 @@ import logic.MainFormStudentLogic;
 public class ClassStudent extends JFrame implements ActionListener {
   JLabel jlb_title = null;
   JLabel jlb_semititle = null;
-  public JButton jbtn_search = null;
   public JButton jbtn_lectureadd = null;
   public JButton jbtn_lecturedel = null;
   public JButton jbtn_cancel = null;
@@ -67,10 +66,9 @@ public class ClassStudent extends JFrame implements ActionListener {
     jsp_grade = new JScrollPane(jtb_grade, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-    jbtn_search = new JButton("나도 장식");
     jlb_title = new JLabel("수업 관리");
     jlb_semititle = new JLabel("수업");
-    jbtn_lectureadd = new JButton("수강신청");
+    jbtn_lectureadd = new JButton("수강신청하기");
     jbtn_lecturedel = new JButton("강의취소");
     jbtn_cancel = new JButton("취소");
 
@@ -88,20 +86,17 @@ public class ClassStudent extends JFrame implements ActionListener {
     this.add(jsp_grade);
     this.add(jlb_semititle);
     this.add(jlb_title);
-    this.add(jbtn_search);
     this.add(jbtn_lectureadd);
     this.add(jbtn_lecturedel);
     this.add(jbtn_cancel);
 
-    jbtn_search.addActionListener(this);
     jbtn_lectureadd.addActionListener(this);
     jbtn_lecturedel.addActionListener(this);
     jbtn_cancel.addActionListener(this);
 
-    jsp_grade.setBounds(0, 100, 490, 350);
+    jsp_grade.setBounds(0, 50, 490, 400);
     jlb_title.setBounds(250, 10, 250, 30);
     jlb_semititle.setBounds(150, 60, 100, 30);
-    jbtn_search.setBounds(500, 60, 100, 30);
     jbtn_lectureadd.setBounds(500, 130, 100, 30);
     jbtn_lecturedel.setBounds(500, 200, 100, 30);
     jbtn_cancel.setBounds(500, 270, 100, 30);
@@ -115,8 +110,10 @@ public class ClassStudent extends JFrame implements ActionListener {
   }
 
   public void addTableRow(Vector mycvo) {
-    if (!tmp)
+    if (!tmp) {
       this.initDisplay();
+    } else if (tmp) {
+    }
     dtm_grade.addRow(mycvo);
 
     // // 가져온 데이터를 vector에 담아 한줄씩 넣어준다
@@ -134,12 +131,8 @@ public class ClassStudent extends JFrame implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     Object obj = e.getSource();
-    if (obj == jbtn_search) {
-      // 새로고침로직
-      // 새로고침시 테이블 초기화
-      // 버튼 삭제 예정....
 
-    } else if (obj == jbtn_lectureadd) {
+    if (obj == jbtn_lectureadd) {
       // 수강신청으로 이동
       csl.lectureAddStudent();
       this.dispose();
@@ -147,11 +140,12 @@ public class ClassStudent extends JFrame implements ActionListener {
     } else if (obj == jbtn_lecturedel) {
       // 수강 취소 로직
       // 테이블 선택시 선택한 과목 삭제
-      csl.lectureDelete();
+      csl.myLectureDelete();
 
     } else if (obj == jbtn_cancel) {
       // 취소 로직
       csl.cancel();
+      this.dispose();
       System.out.println("아 짜증나");
 
     }

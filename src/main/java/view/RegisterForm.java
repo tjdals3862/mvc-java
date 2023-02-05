@@ -139,19 +139,34 @@ public class RegisterForm extends JFrame implements ActionListener {
       String pw2 = jtf_pw2.getText();
       String email = jtf_email.getText();
       String phone = jtf_tel.getText();
-      String nickName = jtf_nickName.getText();
       suvo = new SignUpVO(name, id, pw, email, phone);
-      int result = sdao.signUpStudent();
-      System.out.println("RESULT ::: " + result);
-      if (result == 2) {
-        // JOptionPane.showMessageDialog(rootPane, "hi");
+      SignUpDao sdao = new SignUpDao();
+      int result = sdao.signUpStudent(suvo);
+      System.out.println(result);
 
+      if (name.equals("")) {
+        JOptionPane.showMessageDialog(this, "이름칸이 비었습니다.");
+      } else if (id.equals("")) {
+        JOptionPane.showMessageDialog(this, "id칸이 비었습니다.");
+      } else if (pw.equals("")) {
+        JOptionPane.showMessageDialog(this, "비밀번호칸이 비었습니다.");
+      } else if (pw2.equals("")) {
+        JOptionPane.showMessageDialog(this, "비밀번호칸이 비었습니다.");
+      } else if (!pw2.equals(pw)) {
+        JOptionPane.showMessageDialog(this, "비밀번호를 다시 확인해주세요 ");
+      } else if (email.equals("")) {
+        JOptionPane.showMessageDialog(this, "이메일을 입력해주세요. ");
+      } else if (phone.equals("")) {
+        JOptionPane.showMessageDialog(this, "핸드폰번호를 입력해주세요. ");
+      } else if (result == 2) {
+        JOptionPane.showMessageDialog(this, "회원가입 완료");
       } else {
-        // JOptionPane.showMessageDialog(rootPane, "hello");
+        JOptionPane.showMessageDialog(this, "원인불명으로 회원가입 실패");
 
       }
-    } else if (obj == jbtn_cancel) {
-
+    }
+    if (obj == jbtn_cancel) {
+      this.dispose();
     }
   }
 }

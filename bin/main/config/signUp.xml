@@ -3,7 +3,7 @@
 <mapper namespace="signUp">
 
    <insert id="signUpStudent" parameterType="dto.StudentVO">
-        insert into student values (#{studentid}, #{studentname}, #{st_id}, #{st_pw}, #{email}, #{phone})            
+         insert into student values (null, #{id}, #{name}, #{pw}, #{email}, #{phone})       
     </insert>
 
     <insert id="signUpProfessor" parameterType="dto.ProfessorVO">

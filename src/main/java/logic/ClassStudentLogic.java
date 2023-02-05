@@ -48,24 +48,19 @@ public class ClassStudentLogic {
   public void cancel() {
     MainFormStudent main = new MainFormStudent(svo);
     main.initDisplay();
-    classStudent.dispose();
   }
 
   // 삭제 ===========================수정해야함(아예 강의 삭제되는중...ㅋㅋㅋㅋ)
-  public void lectureDelete() {
+  public void myLectureDelete() {
     cd = new ClassDao();
     int row = classStudent.jtb_grade.getSelectedRow();
     lecture = (String) classStudent.dtm_grade.getValueAt(row, 0);
     professor = (String) classStudent.dtm_grade.getValueAt(row, 1);
     lectime = (String) classStudent.dtm_grade.getValueAt(row, 2);
-    LectureVO gpvo = new LectureVO(lecture, professor, lectime);
-    int result = cd.getdellecture(gpvo);
-    if (result == 1) {
-      JOptionPane.showMessageDialog(classStudent, "강의 삭제 완료", "Success", 1);
-      classStudent.dtm_grade.removeRow(row);
-      System.out.println("삭제완료");
 
-    }
+    JOptionPane.showMessageDialog(classStudent, "강의 삭제 완료", "Success", 1);
+    classStudent.dtm_grade.removeRow(row);
+    System.out.println("삭제완료");
+
   }
-
 }

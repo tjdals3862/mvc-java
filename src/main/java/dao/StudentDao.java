@@ -36,6 +36,7 @@ public class StudentDao {
       sqlSessionFactory = mcf.getSqlSessionFactory();
       sqlSession = sqlSessionFactory.openSession();
       id = sqlSession.update("getupdategrade", gVO);
+      id = 1;
     } catch (Exception e) {
       e.printStackTrace();
     } finally {

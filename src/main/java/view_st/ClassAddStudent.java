@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import logic.ClassProLogic;
+import logic.ClassStudentLogic;
 import dao.ClassDao;
 import dto.LectureVO;
 import dto.StudentVO;
@@ -31,6 +32,8 @@ public class ClassAddStudent extends JFrame implements ActionListener {
   Font f = null;
   ClassDao cd = null;
   ClassProLogic cpl = null;
+  ClassStudentLogic csl = null;
+
 
   String totals[] = { "전체" };
   String[] cols = { "수업명", "교수", "시간" };
@@ -144,17 +147,17 @@ public class ClassAddStudent extends JFrame implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     Object obj = e.getSource();
-    if (obj == jbtn_search) {
-      // 위에 jcb에 익명클래스로 붙임.....
-
-    } else if (obj == jbtn_lectureadd) {
+  
+    if (obj == jbtn_lectureadd) {
       // 수강신청
       // 선택한 과목을 추가
 
-      // 이미 추가한 과목일시 error message
       casl.myLectureSelect(classStudent);
+      // 이미 추가한 과목일시 error message -> 해야함
+
     } else if (obj == jbtn_cancel) {
       // 취소버튼 => 이전 페이지로 이동
+      casl.cancel();
       this.dispose();
     }
   }

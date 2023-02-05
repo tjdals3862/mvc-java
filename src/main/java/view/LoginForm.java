@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -120,7 +121,7 @@ public class LoginForm extends JFrame implements ActionListener {
         pvo = loginlogic.Professorlogin(lvo);
         result = loginlogic.ProfessorLoginCheck(pvo, id);
       } else if (select.equals("student")) {
-        svo = loginlogic.Studentlogin(lvo); //{select: "셀렉트박스로 입력한 값", id="value", pw="value"}
+        svo = loginlogic.Studentlogin(lvo);
         result = loginlogic.StudentLoginCheck(svo, id);
       }
 
@@ -133,7 +134,8 @@ public class LoginForm extends JFrame implements ActionListener {
         mfs.initDisplay();
         this.dispose();
       } else {
-        System.out.println("로그인 실패");
+        // System.out.println("로그인 실패");
+        JOptionPane.showMessageDialog(this, "회원 정보가 없습니다. 회원가입 해주시거나 학생/교수 타입을 확인해주세요.");
       }
 
     } else if (obj == jbtn_join) {

@@ -25,7 +25,7 @@ public class LoginDao {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return student; // {select: "셀렉트박스로 입력한 값", id="value", pw="value"}
+    return student; //
   }
 
   // 교수 로그인 체크

@@ -18,3 +18,16 @@ public class SignUpVO {
         this.phone = phone;
     }
 }
+
+
+
+//   // 강의 추가
+//   public int add(String lecture, String professor, String lectime) {
+//     cd = new ClassDao();
+
+//     // 가져온 데이터를 dto를 통해 생성후 파라미터로 전달
+//     lvo = new LectureVO(lecture, professor, lectime);
+//     int result = cd.getinsertlecture(lvo);
+
+//     return result;
+//   }

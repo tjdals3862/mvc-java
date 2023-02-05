@@ -27,16 +27,4 @@ public class SignUpLogic {
     this.rf = rf;
   }
 
-  // // 강의 추가
-  // public SignUpVO add(String name, String id, String pw, String email, String
-  // phone) {
-  // sud = new SignUpDao();
-
-  // // 가져온 데이터를 dto를 통해 생성후 파라미터로 전달
-  // svo = new SignUpVO(name, id, pw, email, phone);
-  // int result = sud.signUpStudent(svo);
-
-  // return result;
-  // }
-
 }

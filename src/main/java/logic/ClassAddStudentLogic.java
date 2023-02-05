@@ -87,8 +87,15 @@ public class ClassAddStudentLogic {
     classStudent.addTableRow(mycvo);
 
     JOptionPane.showMessageDialog(cas, "강의 담기 완료", "Success", 1);
-    System.out.println(lecture);
+    // System.out.println(mycvo);
+    // System.out.println(lecture + "하......");
 
     // }
   }
+
+  public void cancel() {
+    ClassStudent classStudent = new ClassStudent(svo);
+    classStudent.initDisplay();
+  }
+
 }
