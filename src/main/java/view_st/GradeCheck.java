@@ -40,7 +40,7 @@ public class GradeCheck extends JFrame implements ActionListener {
   public String[] lecturelist = null; // db에서 가져온 강의목록
 
   String[] cols = { "수업명", "교수", "시간", "성적" };
-  String[][] data = new String[3][3];
+  String[][] data = new String[0][3];
   DefaultTableModel dtm_grade = null;
   JTable jtb_grade = null;
   JTableHeader jth_grade = null;
@@ -48,6 +48,7 @@ public class GradeCheck extends JFrame implements ActionListener {
   GradeCheckLogic gsc = null;
   StudentVO svo = null;
   GradeCheckVO gcvo = null;
+  MainFormStudent mfs = null;
 
   public GradeCheck(StudentVO svo) {
     this.svo = svo;
@@ -145,6 +146,9 @@ public class GradeCheck extends JFrame implements ActionListener {
       // 전체 과목일시 해당 학생의 전체 성적 출력하도록 설정
     } else if (obj == jbtn_cancle) {
       this.dispose();
+      mfs= new MainFormStudent(svo);
+      mfs.initDisplay();
+      
 
     }
   }

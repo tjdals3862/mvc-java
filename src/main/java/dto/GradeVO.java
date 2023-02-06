@@ -13,4 +13,9 @@ public class GradeVO {
     this.studentName = studentName;
     this.credit = credit;
   }
+
+  public  GradeVO(String lecture, String studentName) {
+    this.lecture = lecture;
+    this.studentName = studentName;
+  }
 }

@@ -133,7 +133,6 @@ public class LoginForm extends JFrame implements ActionListener {
         mfs.initDisplay();
         this.dispose();
       } else {
-        // System.out.println("로그인 실패");
         JOptionPane.showMessageDialog(this, "회원 정보가 없습니다. 회원가입 해주시거나 학생/교수 타입을 확인해주세요.");
       }
 
@@ -143,3 +142,4 @@ public class LoginForm extends JFrame implements ActionListener {
     }
   }
 }
+

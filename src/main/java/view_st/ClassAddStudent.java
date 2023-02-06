@@ -71,7 +71,7 @@ public class ClassAddStudent extends JFrame implements ActionListener {
     jbtn_lectureadd = new JButton("수강신청");
     jbtn_cancel = new JButton("취소");
 
-    casl = new ClassAddStudentLogic(this);
+    casl = new ClassAddStudentLogic(this,svo);
     // prolist = gsl.getProList();
     // totals 대신 db에서 가져온값을 담아 줘야함 53처럼 값을 가져와 아래 totals대신 추가
     // jcb_professor = new JComboBox(totals);

@@ -1,6 +1,5 @@
 package logic;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -8,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import dao.ClassDao;
 import dao.GradeCheckDao;
+import dto.GradeVO;
 import dto.LectureVO;
 import dto.StudentVO;
 import view_pro.ClassPro;
@@ -32,8 +32,9 @@ public class ClassAddStudentLogic {
 
   }
 
-  public ClassAddStudentLogic(ClassAddStudent cas) {
+  public ClassAddStudentLogic(ClassAddStudent cas, StudentVO svo) {
     this.cas = cas;
+    this.svo = svo;
   }
 
   public void getTotalLectureList(String lecture) {
@@ -75,22 +76,27 @@ public class ClassAddStudentLogic {
   // 강의 선택해서 담기 ===========수정중
   public void myLectureSelect(ClassStudent classStudent) {
 
+    cd = new ClassDao();
     int row = cas.jtb_grade.getSelectedRow();
     lecture = (String) cas.dtm_grade.getValueAt(row, 0);
     professor = (String) cas.dtm_grade.getValueAt(row, 1);
     lectime = (String) cas.dtm_grade.getValueAt(row, 2);
-    Vector<String> mycvo = new Vector<>();
+/*     Vector<String> mycvo = new Vector<>();
     mycvo.add(lecture);
     mycvo.add(professor);
-    mycvo.add(lectime);
+    mycvo.add(lectime); */
 
-    classStudent.addTableRow(mycvo);
+    GradeVO gvo = new GradeVO(lecture, svo.getStudentname());
+    // 강의 중복 확인
+    int result = cd.studentdepulicatecheck(gvo);   
 
-    JOptionPane.showMessageDialog(cas, "강의 담기 완료", "Success", 1);
-    // System.out.println(mycvo);
-    // System.out.println(lecture + "하......");
-
-    // }
+    if(result == 0) {
+    // 강의 추가    
+      cd.getinsertlecturestudent(gvo);
+      JOptionPane.showMessageDialog(cas, "강의 담기 완료", "Success", 1);
+    }  else {
+      JOptionPane.showMessageDialog(cas, "이미 추가 된 강의 입니다.", "Success", 1);
+    }
   }
 
   public void cancel() {

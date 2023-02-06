@@ -91,18 +91,20 @@ public class MainFormStudent extends JFrame implements ActionListener {
 
         if (obj == jbtn_logout) {
             mfsl.logout();
-            // System.out.println("로그아웃하겠슴둥");
             // 로그아웃 로직
 
         } else if (obj == jbtn_grade) {
             // 성적확인 로직
             mfsl.gradeCheckView(svo);
+            this.dispose();
 
         } else if (obj == jbtn_leture) {
-            mfsl.lecture();
-            // System.out.println("안눌리나?");
-
             // 강의확인 로직
+            System.out.println("==========test============");
+            mfsl.lecture();
+            this.dispose();
+
+            
         }
     }
 

@@ -9,6 +9,23 @@
         </where>
     </select>
 
+    <select id="getclassstuent" parameterType="dto.StudentVO" resultType="dto.ClassVO">
+        select b.lecture, a.professor, a.lectime
+        from lecture a, grade b
+        <where>
+        a.lecture = b.lecture
+        and b.studentname = #{studentname}
+        </where>          
+    </select>
+
+    <select id="studentdepulicatecheck" parameterType="dto.GradeVO" resultType="dto.GradeVO">
+        SELECT *
+        from grade
+        <where>
+        lecture = #{lecture} and studentname = #{studentName}
+        </where>          
+    </select>
+
 
     <select id="getTotalLecture" parameterType="String" resultType="dto.LectureVO">
        SELECT lecture, professor, lectime FROM lecture
@@ -30,8 +47,16 @@
         insert into lecture values (#{lecture}, #{professor}, #{lectime})            
     </insert>
 
+    <insert id="getinsertlecturestudent" parameterType="dto.GradeVO">
+        insert into grade values (#{lecture}, #{studentName}, 0)            
+    </insert>
+
     <delete id="getdellecture" parameterType="dto.LectureVO">
         delete from lecture where lecture = #{lecture}
     </delete>
+
+    <delete id="getdellecturestudent" parameterType="dto.GradeVO">
+        delete from grade where lecture = #{lecture} and studentname = #{studentName}
+    </delete>    
 
 </mapper>

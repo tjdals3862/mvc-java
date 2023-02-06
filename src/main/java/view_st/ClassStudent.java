@@ -4,10 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Vector;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -16,12 +14,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import dao.ClassDao;
-import dto.LectureVO;
+import dto.ClassVO;
 import dto.StudentVO;
 import logic.ClassAddStudentLogic;
 import logic.ClassStudentLogic;
 import logic.GradeCheckProLogic;
-import logic.MainFormStudentLogic;
 
 public class ClassStudent extends JFrame implements ActionListener {
   JLabel jlb_title = null;
@@ -29,6 +26,7 @@ public class ClassStudent extends JFrame implements ActionListener {
   public JButton jbtn_lectureadd = null;
   public JButton jbtn_lecturedel = null;
   public JButton jbtn_cancel = null;
+  public JButton jbtn_search = null;
 
   Font f = null;
   ClassDao cd = null;
@@ -47,6 +45,7 @@ public class ClassStudent extends JFrame implements ActionListener {
   GradeCheckProLogic gsl = null;
   ClassStudentLogic csl = null;
   ClassAddStudentLogic casl = null;
+  MainFormStudent mfs = null;
 
   StudentVO svo = null;
   Boolean tmp = false;
@@ -68,15 +67,16 @@ public class ClassStudent extends JFrame implements ActionListener {
 
     jlb_title = new JLabel("수업 관리");
     jlb_semititle = new JLabel("수업");
-    jbtn_lectureadd = new JButton("수강신청하기");
+    jbtn_lectureadd = new JButton("수강신청");
     jbtn_lecturedel = new JButton("강의취소");
     jbtn_cancel = new JButton("취소");
+    jbtn_search = new JButton("검색");
 
     csl = new ClassStudentLogic(this, svo);
     // =======================================여기....==============================
     gsl = new GradeCheckProLogic();
     casl = new ClassAddStudentLogic();
-    lecturelist = gsl.getLectureList();
+    //lecturelist = gsl.getLectureList();
 
     f = new Font("굴림체", Font.BOLD, 16);
 
@@ -89,17 +89,21 @@ public class ClassStudent extends JFrame implements ActionListener {
     this.add(jbtn_lectureadd);
     this.add(jbtn_lecturedel);
     this.add(jbtn_cancel);
+    this.add(jbtn_search);
 
     jbtn_lectureadd.addActionListener(this);
     jbtn_lecturedel.addActionListener(this);
     jbtn_cancel.addActionListener(this);
+    jbtn_search.addActionListener(this);
 
     jsp_grade.setBounds(0, 50, 490, 400);
     jlb_title.setBounds(250, 10, 250, 30);
     jlb_semititle.setBounds(150, 60, 100, 30);
+    jbtn_search.setBounds(500, 60, 100, 30);
     jbtn_lectureadd.setBounds(500, 130, 100, 30);
     jbtn_lecturedel.setBounds(500, 200, 100, 30);
     jbtn_cancel.setBounds(500, 270, 100, 30);
+    
 
     this.setTitle("수업 관리/학생");
     this.setLocation(500, 100);
@@ -109,12 +113,12 @@ public class ClassStudent extends JFrame implements ActionListener {
 
   }
 
-  public void addTableRow(Vector mycvo) {
-    if (!tmp) {
-      this.initDisplay();
-    } else if (tmp) {
-    }
-    dtm_grade.addRow(mycvo);
+  // public void addTableRow(Vector mycvo) {
+  //   if (!tmp) {
+  //     this.initDisplay();
+  //   } else if (tmp) {
+  //   }
+  //   dtm_grade.addRow(mycvo);
 
     // // 가져온 데이터를 vector에 담아 한줄씩 넣어준다
     // for (int i = 0; i < mycvo.size(); i++) {
@@ -126,13 +130,19 @@ public class ClassStudent extends JFrame implements ActionListener {
     // result.add(gpvo.getLectime());
     // classpro.dtm_grade.addRow(result);
 
-  }
+  //}
 
   @Override
   public void actionPerformed(ActionEvent e) {
     Object obj = e.getSource();
 
-    if (obj == jbtn_lectureadd) {
+    if(obj == jbtn_search) {
+      // 성적 검색 로직
+       csl.gradeCheck();
+      
+
+
+    } else if (obj == jbtn_lectureadd) {
       // 수강신청으로 이동
       csl.lectureAddStudent();
       this.dispose();
@@ -145,10 +155,9 @@ public class ClassStudent extends JFrame implements ActionListener {
     } else if (obj == jbtn_cancel) {
       // 취소 로직
       csl.cancel();
+      mfs = new MainFormStudent(svo);
+      mfs.initDisplay();
       this.dispose();
-      System.out.println("아 짜증나");
-
     }
-
-  }
+  } 
 }

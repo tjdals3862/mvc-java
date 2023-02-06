@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDMapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="signUp">
 
-   <insert id="signUpStudent" parameterType="dto.StudentVO">
-         insert into student values (null, #{id}, #{name}, #{pw}, #{email}, #{phone})       
+   <insert id="signUpStudent" parameterType="dto.SignUpVO">
+        insert into student values (USER_SEQ.nextval, #{studentname}, #{st_id},  #{st_pw}, #{email}, #{phone})       
     </insert>
 
-    <insert id="signUpProfessor" parameterType="dto.ProfessorVO">
-        insert into professor values (#{professorid}, #{pro_name}, #{pr_id}, #{pr_pw})            
+    <insert id="signUpProfessor" parameterType="dto.SignUpproVO">
+        insert into professor values (PRO_SEQ.nextval, #{pro_name}, #{pr_id}, #{pr_pw})            
     </insert>
 
 </mapper>

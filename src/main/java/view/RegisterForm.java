@@ -11,8 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import dao.SignUpDao;
 import dto.SignUpVO;
+import dto.SignUpproVO;
+import logic.RegisterLogic;
 
 public class RegisterForm extends JFrame implements ActionListener {
   // 선언부
@@ -24,9 +25,10 @@ public class RegisterForm extends JFrame implements ActionListener {
   JButton jbtn_idconfirm, jbtn_join, jbtn_cancel;
   JComboBox pro_or_stu = null;
   String pro[] = { "professor", "student" };
-  SignUpVO suvo = null;
-  SignUpDao sdao = null;
 
+  SignUpVO suvo = null;
+  SignUpproVO supvo = null;
+  RegisterLogic rl = null;
   // 생성자
   public RegisterForm() {
   }
@@ -48,7 +50,6 @@ public class RegisterForm extends JFrame implements ActionListener {
     jtf_email = new JTextField(""); // email
     jtf_tel = new JTextField(""); // 폰번호
     jtf_nickName = new JTextField(""); // 닉네임
-    jbtn_idconfirm = new JButton("ID 확인"); // 로그인 버튼
     jbtn_join = new JButton("회원가입");// 회원가입 버튼
     jbtn_cancel = new JButton("취소");// 취소 버튼
     pro_or_stu = new JComboBox<String>(pro);
@@ -76,10 +77,6 @@ public class RegisterForm extends JFrame implements ActionListener {
     jlb_id.setBounds(167, 90, 200, 35);
     this.add(jtf_id);
     jtf_id.setBounds(220, 90, 180, 35);
-
-    // id check btn
-    this.add(jbtn_idconfirm);
-    jbtn_idconfirm.setBounds(405, 90, 90, 35);
 
     // pw
     this.add(jlb_pw);
@@ -110,7 +107,6 @@ public class RegisterForm extends JFrame implements ActionListener {
     this.add(jbtn_cancel);
 
     // btn event
-    jbtn_idconfirm.addActionListener(this);
     jbtn_join.addActionListener(this);
     jbtn_cancel.addActionListener(this);
 
@@ -126,39 +122,58 @@ public class RegisterForm extends JFrame implements ActionListener {
     // TODO Auto-generated method stub
     Object obj = e.getSource();
 
-    if (obj == jbtn_idconfirm) {
-
-    } else if (obj == jbtn_join) {
+    if (obj == jbtn_join) {
       String name = jtf_name.getText();
       String id = jtf_id.getText();
       String pw = jtf_pw.getText();
       String pw2 = jtf_pw2.getText();
       String email = jtf_email.getText();
       String phone = jtf_tel.getText();
-      suvo = new SignUpVO(name, id, pw, email, phone);
-      SignUpDao sdao = new SignUpDao();
-      int result = sdao.signUpStudent(suvo);
-      System.out.println(result);
+      String select = pro[pro_or_stu.getSelectedIndex()];
+      rl = new RegisterLogic(this);
 
-      if (name.equals("")) {
+      while(true) {
+
+      if (("").equals(name)) {
         JOptionPane.showMessageDialog(this, "이름칸이 비었습니다.");
-      } else if (id.equals("")) {
+        break;
+      } else if (("").equals(id)) {
         JOptionPane.showMessageDialog(this, "id칸이 비었습니다.");
-      } else if (pw.equals("")) {
+        break;
+      } else if (("").equals(pw)) {
         JOptionPane.showMessageDialog(this, "비밀번호칸이 비었습니다.");
-      } else if (pw2.equals("")) {
+        break;
+      } else if (("").equals(pw2)) {
         JOptionPane.showMessageDialog(this, "비밀번호칸이 비었습니다.");
-      } else if (!pw2.equals(pw)) {
+        break;
+      } else if (pw.equals(pw2)) {
         JOptionPane.showMessageDialog(this, "비밀번호를 다시 확인해주세요 ");
-      } else if (email.equals("")) {
+        break;
+      } else if (("").equals(email)) {
         JOptionPane.showMessageDialog(this, "이메일을 입력해주세요. ");
-      } else if (phone.equals("")) {
+        break;
+      } else if (("").equals(phone)) {
         JOptionPane.showMessageDialog(this, "핸드폰번호를 입력해주세요. ");
-      } else if (result == 2) {
-        JOptionPane.showMessageDialog(this, "회원가입 완료");
-      } else {
-        JOptionPane.showMessageDialog(this, "원인불명으로 회원가입 실패");
+        break;
+      } 
 
+      
+
+        if(select.equals("student")) {
+          suvo = new SignUpVO(name, id, pw, email, phone);       
+          int result =  rl.studentjoin(suvo);
+          if(result == 1) {
+            JOptionPane.showMessageDialog(this, "회원가입 완료");
+            this.dispose();
+          }
+        } else if(select.equals("professor")){
+          supvo = new SignUpproVO(name, id, pw);
+          int result = rl.professorjoin(supvo);
+          if(result == 1) {
+            JOptionPane.showMessageDialog(this, "회원가입 완료");
+            this.dispose();
+          }
+        }
       }
     }
     if (obj == jbtn_cancel) {

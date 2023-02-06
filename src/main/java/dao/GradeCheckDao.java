@@ -45,6 +45,8 @@ public class GradeCheckDao {
     return proList;
   }
 
+
+
   // 강의 성적 조회(교수)
   public List<GradeProVO> getgradeproList(String lecture) {
     SqlSessionFactory sqlSessionFactory = null;
@@ -76,10 +78,4 @@ public class GradeCheckDao {
     return lecList;
   }
 
-  public static void main(String[] args) {
-    GradeCheckDao gradeCheckDao = new GradeCheckDao();
-    List<GradeProVO> list = gradeCheckDao.getgradeproList("'자바'");
-    System.out.println(list);
-
-  }
 }

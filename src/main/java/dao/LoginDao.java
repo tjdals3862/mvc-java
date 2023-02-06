@@ -22,7 +22,6 @@ public class LoginDao {
       sqlSessionFactory = mcf.getSqlSessionFactory();
       sqlSession = sqlSessionFactory.openSession();
       student = sqlSession.selectOne("loginstudent", lvo);
-      System.out.println("--------------==========" + student);
     } catch (Exception e) {
       e.printStackTrace();
     }
